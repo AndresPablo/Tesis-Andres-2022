@@ -99,12 +99,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61ee2ffb2da4b743b61594fbd2fca44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Tipo: 0
   solido: 1
   peligroso: 0
+  victoria: 0
   poderRebote: 0
-  colorNormal: {r: 1, g: 1, b: 1, a: 1}
+  colorNormal: {r: 1, g: 0.95283014, b: 0.41037738, a: 1}
   colorVictoria: {r: 0.37824848, g: 0.8405593, b: 0.9433962, a: 1}
   colorPeligro: {r: 1, g: 0.0141509175, b: 0.0141509175, a: 1}
+  colorRebote: {r: 1, g: 0, b: 1, a: 1}
 --- !u!61 &7984226330113218694
 BoxCollider2D:
   m_ObjectHideFlags: 0

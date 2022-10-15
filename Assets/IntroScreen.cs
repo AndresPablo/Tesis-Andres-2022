@@ -22,7 +22,7 @@ public class IntroScreen : MonoBehaviour
         int a = 0;
         int b = 0;
         float magnitud = 0;
-        foreach (KeyValuePair<int, GameObject> blob in TSPS_Listener.peopleObjects)
+        foreach (KeyValuePair<int, GameObject> blob in TSPS_Listener.blobGameObjects)
         {
             magnitud += blob.Value.transform.localScale.magnitude;
             if (blob.Value.transform.position.x < 0)

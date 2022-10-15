@@ -137,8 +137,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61ee2ffb2da4b743b61594fbd2fca44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Tipo: 0
   solido: 1
   peligroso: 0
+  victoria: 0
   poderRebote: 0
   colorNormal: {r: 1, g: 1, b: 1, a: 1}
   colorVictoria: {r: 0, g: 1, b: 1, a: 1}

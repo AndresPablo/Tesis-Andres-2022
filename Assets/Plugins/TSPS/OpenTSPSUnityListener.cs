@@ -26,13 +26,14 @@
  */
 
 
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TSPS;
+using UnityEngine;
 
 public class OpenTSPSUnityListener : MonoBehaviour  {
-		
+
+	
 	//a place to hold all the people
 	private Dictionary<int, Person> people = new Dictionary<int, Person>(32);
 	public int PeopleCount(){
@@ -55,7 +56,6 @@ public class OpenTSPSUnityListener : MonoBehaviour  {
 			else{
 				person = people[person_id];
 				updatePerson(person, args);
-				//personUpdated(person);
 				BroadcastMessage("PersonUpdated", person, SendMessageOptions.DontRequireReceiver);
 			}
 		}
@@ -65,7 +65,6 @@ public class OpenTSPSUnityListener : MonoBehaviour  {
 				Person personToRemove = people[person_id];				
 				BroadcastMessage("PersonWillLeave", personToRemove, SendMessageOptions.DontRequireReceiver);
 				people.Remove(person_id);
-				//personWillLeave(personToRemove);
 			}
 		}
 	}
@@ -73,8 +72,7 @@ public class OpenTSPSUnityListener : MonoBehaviour  {
 	private Person addPerson(ArrayList args) {
 		Person newPerson = new Person();
 		updatePerson(newPerson, args);
-		people.Add(newPerson.id, newPerson);	
-		//personEntered(newPerson);
+		people.Add(newPerson.id, newPerson);
 		BroadcastMessage("PersonEntered", newPerson, SendMessageOptions.DontRequireReceiver);
 		return newPerson;
 	}
@@ -102,39 +100,17 @@ public class OpenTSPSUnityListener : MonoBehaviour  {
 		//	}
 		//}			
 	}
-//	
-//	
-//	public void personEntered(Person person){
-//		Debug.Log(" person entered with ID " + person.id);
-//		GameObject personObject = (GameObject)Instantiate(personMarker, positionForPerson(person), Quaternion.identity);
-//		personObject.renderer.material = materials[person.id % materials.Length];
-//		peopleCubes.Add(person.id,personObject);
-//
-//	}
-//
-//	public void personUpdated(Person person) {
-//		//Debug.Log("Person updated with ID " + person.id);
-//		if(peopleCubes.ContainsKey(person.id)){
-//			GameObject cubeToMove = peopleCubes[person.id];
-//			cubeToMove.transform.position = positionForPerson(person);
-//		}
-//	}
-//
-//	public void personWillLeave(Person person){
-//		Debug.Log("Person leaving with ID " + person.id);
-//		if(peopleCubes.ContainsKey(person.id)){
-//			Debug.Log("Destroying cube");
-//			GameObject cubeToRemove = peopleCubes[person.id];
-//			peopleCubes.Remove(person.id);
-//			//delete it from the scene	
-//			Destroy(cubeToRemove);
-//		}
-//	}
-//	
-//	//maps the OpenTSPS coordinate system into one that matches the size of the boundingPlane
-//	private Vector3 positionForPerson(Person person){
-//		Bounds meshBounds = boundingPlane.GetComponent<MeshFilter>().sharedMesh.bounds;
-//		return new Vector3( (float)(.5 - person.centroidX) * meshBounds.size.x, 0.25f, (float)(person.centroidY - .5) * meshBounds.size.z );
-//	}
-//	
+	
+
+	
+	//maps the OpenTSPS coordinate system into one that matches the size of the boundingPlane
+	private Vector3 positionForPerson(Person person){
+		Vector3 basePos = new Vector3((float)(.5 - person.centroidX) * Screen.width/4, 0.25f, (float)(person.centroidY - .5) * Screen.height/4);
+		Vector3 newPos = Camera.main.WorldToScreenPoint(basePos);
+		return newPos;
+
+		//Bounds meshBounds = boundingPlane.GetComponent<MeshFilter>().sharedMesh.bounds;
+		//return new Vector3( (float)(.5 - person.centroidX) * meshBounds.size.x, 0.25f, (float)(person.centroidY - .5) * meshBounds.size.z );
+	}
+	
 }

@@ -44,9 +44,9 @@ public class CharacterController2D : MonoBehaviour
     void Update()
     {
         // Movement controls
-        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) /*&& (isGrounded || Mathf.Abs(r2d.velocity.x) > 0.01f)*/)
+        if (Input.GetAxis("Horizontal") == -1 || Input.GetAxis("Horizontal") == 1)
         {
-            moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
+            moveDirection = Input.GetAxis("Horizontal");
         }
         else
         {
@@ -56,6 +56,7 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
+
         // Change facing direction
         if (moveDirection != 0)
         {
@@ -63,25 +64,30 @@ public class CharacterController2D : MonoBehaviour
             {
                 facingRight = true;
                 t.localScale = new Vector3(Mathf.Abs(t.localScale.x), t.localScale.y, transform.localScale.z);
-                anim.SetBool("caminando", true);
+                if (isGrounded) anim.SetBool("caminando", true);
             }
             if (moveDirection < 0 && facingRight)
             {
                 facingRight = false;
                 t.localScale = new Vector3(-Mathf.Abs(t.localScale.x), t.localScale.y, t.localScale.z);
-                anim.SetBool("caminando", true);
+                
+                if(isGrounded) anim.SetBool("caminando", true);
             }
         }else
         {
             anim.SetBool("caminando", false);
-
         }
+
 
         // Jumping
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if(isGrounded)
         {
-            Saltar();
+            if (Input.GetKeyDown(KeyCode.W)  || Input.GetAxis("Vertical") > 0 || Input.GetButtonDown("Fire1"))
+            {
+                Saltar();
+            }
         }
+        
 
         // Camera follow
         if (mainCamera)
@@ -129,16 +135,18 @@ public class CharacterController2D : MonoBehaviour
     {
         r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight * (r2d.gravityScale));
         AudioManager.instance.PlayOneShot(salto_SFX);
-        anim.Play("Air");
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("caminando", false);
+        anim.Play("Air");
+
     }
 
     public void ForzarSalto(float poder = 1f)
     {
         r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight * poder* (r2d.gravityScale));
-        anim.Play("Air");
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("caminando", false);
+        anim.Play("Air");
+
     }
 }

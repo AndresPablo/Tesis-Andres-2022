@@ -54,6 +54,7 @@ public class Jugador : MonoBehaviour
         graficos.SetActive(true);
         col.enabled = true;
         charControl.enabled = true;
+        rb.velocity = Vector2.zero;
         if (spawn_SFX) AudioManager.instance.PlayOneShot(spawn_SFX);
     }
 

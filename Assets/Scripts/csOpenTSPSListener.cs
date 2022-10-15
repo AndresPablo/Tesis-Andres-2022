@@ -33,21 +33,22 @@ using TSPS;
 
 public class csOpenTSPSListener : MonoBehaviour {
 
-	public Dictionary<int,GameObject> peopleObjects = new Dictionary<int,GameObject>();
+	public Dictionary<int,GameObject> blobGameObjects = new Dictionary<int,GameObject>();
+	public GameObject blobPrefab;
 
-	
 	public void PersonEntered(Person person){
 
 		//Debug.Log(" person entered with ID " + person.id);
-		GameObject personObject = new GameObject();
+		GameObject personObject = Instantiate(blobPrefab);
 		personObject.name = person.id.ToString();
 		personObject.transform.position = new Vector3(0,0,0);
-		peopleObjects.Add(person.id,personObject);
+		blobGameObjects.Add(person.id,personObject);
+		personObject.SendMessage("Inicializar", person.id, SendMessageOptions.DontRequireReceiver);
 	}
 
 	public void PersonUpdated(Person person) {
-		if(peopleObjects.ContainsKey(person.id)){
-			GameObject cubeToMove = peopleObjects[person.id];
+		if(blobGameObjects.ContainsKey(person.id)){
+			GameObject cubeToMove = blobGameObjects[person.id];
 			cubeToMove.transform.position = positionForPerson(person);
 			Vector2 tam = new Vector2(person.boundingRectSizeWidth, person.boundingRectSizeHeight);
 			cubeToMove.transform.localScale = tam;
@@ -56,19 +57,25 @@ public class csOpenTSPSListener : MonoBehaviour {
 
 	public void PersonWillLeave(Person person){
 		//Debug.Log("Person leaving with ID " + person.id);
-		if(peopleObjects.ContainsKey(person.id)){
+		if(blobGameObjects.ContainsKey(person.id)){
 			// Debug.Log("Destroying cube");
-			GameObject cubeToRemove = peopleObjects[person.id];
-			peopleObjects.Remove(person.id);
+			GameObject cubeToRemove = blobGameObjects[person.id];
+			blobGameObjects.Remove(person.id);
 			// delete it from the scene	
 			Destroy(cubeToRemove);
 		}
 	}
+
+
 	
 	//maps the OpenTSPS coordinate system into one that matches the size of the boundingPlane
 	private Vector3 positionForPerson(Person person){
-
-		return new Vector3( (float)(.5 - person.centroidX) , 0.25f, (float)(person.centroidX - .5));
+		Vector2 centroidPos = new Vector2(person.centroidX, person.centroidY);
+		//Vector3 worldPos = Camera.main.wor
+		Vector3 bordeX = Camera.main.ScreenToWorldPoint(new Vector3( Screen.width, 0, 0));
+		Vector3 bordeY = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, 0));
+		//return new Vector3( (float)(.5 - person.centroidX) * 720 , (float)(person.centroidX - .5) * Screen.height/4);
+		return new Vector3((float)(.5 - person.centroidX) * bordeX.x, (float)(.5 - person.centroidY) * bordeY.y, 0f);
 	}
 	
 }

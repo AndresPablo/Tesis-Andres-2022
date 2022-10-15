@@ -4891,7 +4891,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1112774599, guid: 33e802ae27eacc44f80d07006db49ea4, type: 3}
-  m_Color: {r: 1, g: 0.9614619, b: 0.2971698, a: 1}
+  m_Color: {r: 0, g: 0.38197374, b: 0.9622642, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4913,11 +4913,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61ee2ffb2da4b743b61594fbd2fca44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Tipo: 0
   solido: 0
   peligroso: 0
   victoria: 0
   poderRebote: 0
-  colorNormal: {r: 1, g: 1, b: 1, a: 1}
+  colorNormal: {r: 1, g: 0.95283014, b: 0.41037738, a: 1}
   colorVictoria: {r: 0.37824848, g: 0.8405593, b: 0.9433962, a: 1}
   colorPeligro: {r: 1, g: 0.0141509175, b: 0.0141509175, a: 1}
   colorRebote: {r: 1, g: 0, b: 1, a: 1}
@@ -4980,6 +4981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40aee4311db387c46bea180e88016655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particulas: {fileID: 0}
   recargaMax: 5
   carga: 0
   prefab: {fileID: 0}

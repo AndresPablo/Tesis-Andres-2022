@@ -94,7 +94,7 @@ public class VoteControl : MonoBehaviour
     {
         int a = 0;
         int b = 0;
-        foreach (KeyValuePair<int, GameObject> blob in TSPS_Listener.peopleObjects)
+        foreach (KeyValuePair<int, GameObject> blob in TSPS_Listener.blobGameObjects)
         {
             if (blob.Value.transform.position.x > 0)
             {
@@ -132,7 +132,6 @@ public class VoteControl : MonoBehaviour
             Ev_ProcesarEleccion(dataActual);
     }
        
-
     void AbrirVotacion()
     {
         votingInProgress = true;

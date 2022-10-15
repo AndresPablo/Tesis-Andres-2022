@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [Space]
     public CharacterController2D playerController;
     public Jugador player;
+    [SerializeField][Range(1f,5f)] float respawnTime = 2f;
     [SerializeField] Transform contenedorNiveles;
     [SerializeField] Tilemap[] niveles;
     GameObject levelGO;
@@ -201,7 +202,7 @@ public class GameManager : MonoBehaviour
     void InvocarRespawn()
     {
         muertes++;
-        Invoke("SpawnearJugador", 3f);
+        Invoke("SpawnearJugador", respawnTime);
     }
 
 

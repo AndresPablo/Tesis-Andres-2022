@@ -82422,6 +82422,7 @@ MonoBehaviour:
   TSPS_Listener: {fileID: 2019207123}
   playerController: {fileID: 988294287}
   player: {fileID: 1569476465}
+  respawnTime: 2
   contenedorNiveles: {fileID: 1545908373}
   niveles:
   - {fileID: 1352806872}
@@ -82471,8 +82472,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   votingInProgress: 0
-  tiempoEntreElecciones: 3
-  maxVoteTime: 8
+  tiempoEntreElecciones: 10
+  maxVoteTime: 4
   voteTimer: 0
   votos_si: 0
   votos_no: 0
@@ -82526,6 +82527,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 988294287}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   OnVotingOpen:
     m_PersistentCalls:
       m_Calls:
@@ -82552,6 +82565,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 988294287}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1748037934
 MonoBehaviour:

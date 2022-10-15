@@ -135,18 +135,18 @@ public class CharacterController2D : MonoBehaviour
     {
         r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight * (r2d.gravityScale));
         AudioManager.instance.PlayOneShot(salto_SFX);
+        anim.Play("Air");
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("caminando", false);
-        anim.Play("Air");
 
     }
 
     public void ForzarSalto(float poder = 1f)
     {
         r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight * poder* (r2d.gravityScale));
+        anim.Play("Air");
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("caminando", false);
-        anim.Play("Air");
 
     }
 }

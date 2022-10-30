@@ -15,7 +15,6 @@ public class Blob : MonoBehaviour
         if(nameLabel) nameLabel.text = id.ToString("00");
         Color nuevoColor = new Color(Random.Range(50, 255), Random.Range(50, 255), Random.Range(50, 255));
         img.color = nuevoColor;
-        img.color = new Color(Random.Range(50, 255), Random.Range(50, 255), Random.Range(50, 255));
     }
 
     private void Update()

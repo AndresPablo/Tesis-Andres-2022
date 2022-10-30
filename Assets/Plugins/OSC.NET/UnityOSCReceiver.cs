@@ -9,7 +9,7 @@ using OSC.NET;
 public class UnityOSCReceiver : MonoBehaviour {
 	
 	private bool connected = false;
-	public int port = 3333;
+	public int port = 12000;
 	private OSCReceiver receiver;
 	private Thread thread;
 	

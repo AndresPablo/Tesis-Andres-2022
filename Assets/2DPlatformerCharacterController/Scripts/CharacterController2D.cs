@@ -82,7 +82,7 @@ public class CharacterController2D : MonoBehaviour
         // Jumping
         if(isGrounded)
         {
-            if (Input.GetKeyDown(KeyCode.W)  || Input.GetAxis("Vertical") > 0 || Input.GetButtonDown("Fire1"))
+            if (Input.GetKeyDown(KeyCode.W)  || Input.GetAxis("Vertical") > 0 || Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2"))
             {
                 Saltar();
             }

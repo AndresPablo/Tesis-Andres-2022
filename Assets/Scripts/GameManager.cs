@@ -209,3 +209,8 @@ public class GameManager : MonoBehaviour
 }
 
 public enum GameState { INTRO, PLAY, FIN }
+
+public struct GameSettings{
+
+
+}

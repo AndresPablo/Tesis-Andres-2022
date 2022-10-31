@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour
     public Color normalColor;
     public UnityEvent OnVictory;
     int nivelIndex;
-    int muertes;
-    float tiempo;
+    public int muertes;
+    public float tiempo;
     Tilemap NivelActual { get { return niveles[nivelIndex]; } }
 
     void Start()
@@ -48,21 +48,21 @@ public class GameManager : MonoBehaviour
         niveles[nivelIndex].gameObject.SetActive(true);
         SpawnearJugador();
         AudioManager.instance.Stop();
+        muertes = 0;
+        tiempo = 0;
+        // Empezamos a votar
+        Votador.Inicializar();
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L))
+        if(Input.GetKeyDown(KeyCode.R))
         {
             Reiniciar();
         }
-        if(nivelIndex == 0)
-        {
-            if(Input.anyKey)
-            {
-                //levelGO.SetActive(false);
-            }
-        }
+
+        // sumamos los segundos en el Update
+        tiempo += Time.deltaTime;
     }
 
     void SwapAllTiles(TileBase tileVieja, TileBase tileNueva)
@@ -72,6 +72,8 @@ public class GameManager : MonoBehaviour
 
     public void SpawnearJugador()
     {
+        if (nivelIndex >= niveles.Length) return;
+
         foreach(Transform child in NivelActual.transform)
         {
             if(child.CompareTag("Spawn"))
@@ -116,7 +118,17 @@ public class GameManager : MonoBehaviour
 
     public GameObject GetObjetoDeTipoEnNivel(TipoObjeto tipo)
     {
-        int cantHijos = NivelActual.transform.childCount;
+        int cantHijos;
+        if (NivelActual)
+        {
+             cantHijos = NivelActual.transform.childCount;
+        }
+        else
+        {
+            Debug.LogWarning("No hay hijos del nivel");
+        }
+            
+        
         GameObject go = null;
         foreach(Transform ch in NivelActual.transform)
         {

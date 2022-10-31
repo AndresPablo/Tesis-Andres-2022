@@ -10,6 +10,7 @@ public class CharacterController2D : MonoBehaviour
     public float maxSpeed = 3.4f;
     public float jumpHeight = 6.5f;
     public float gravityScale = 1.5f;
+    public bool cameraFollow = true;
     public Camera mainCamera;
     public Transform groundCheckObj;
     [SerializeField] bool facingRight = true;
@@ -36,7 +37,8 @@ public class CharacterController2D : MonoBehaviour
 
         if (mainCamera)
         {
-            cameraPos = mainCamera.transform.position;
+            if(cameraFollow)
+                cameraPos = mainCamera.transform.position;
         }
     }
 
@@ -87,12 +89,11 @@ public class CharacterController2D : MonoBehaviour
                 Saltar();
             }
         }
-        
 
-        // Camera follow
         if (mainCamera)
         {
-            mainCamera.transform.position = new Vector3(t.position.x, t.position.y, cameraPos.z);
+            if (cameraFollow)
+                cameraPos = mainCamera.transform.position;
         }
     }
 
@@ -134,8 +135,8 @@ public class CharacterController2D : MonoBehaviour
     public void Saltar()
     {
         r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight * (r2d.gravityScale));
+        isGrounded = false;
         AudioManager.instance.PlayOneShot(salto_SFX);
-        anim.Play("Air");
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("caminando", false);
 
@@ -144,9 +145,9 @@ public class CharacterController2D : MonoBehaviour
     public void ForzarSalto(float poder = 1f)
     {
         r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight * poder* (r2d.gravityScale));
-        anim.Play("Air");
-        anim.SetBool("isGrounded", isGrounded);
-        anim.SetBool("caminando", false);
+        isGrounded = false;
 
+        anim.SetBool("caminando", false);
+        anim.SetBool("isGrounded", isGrounded);
     }
 }

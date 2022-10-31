@@ -38,9 +38,9 @@ public class VoteEffector : MonoBehaviour
         }
     }
 
+    // Genera la votacion (poll)
     public VotacionData GetRandomPoll()
     {
-        Debug.Log("Generando votacion");
         int A;
         int B;
         A = Random.Range(0, (int)TipoVoto.COUNT);

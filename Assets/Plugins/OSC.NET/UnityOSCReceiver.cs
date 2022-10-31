@@ -3,8 +3,8 @@ using System;
 using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
-
 using OSC.NET;
+
 
 public class UnityOSCReceiver : MonoBehaviour {
 	
@@ -23,7 +23,9 @@ public class UnityOSCReceiver : MonoBehaviour {
 			
 	public void Start() {
 
-		try {
+			disconnect();
+
+			try {
 			connected = true;
 			receiver = new OSCReceiver(port);
 			thread = new Thread(new ThreadStart(listen));
@@ -84,7 +86,7 @@ public class UnityOSCReceiver : MonoBehaviour {
 				} else Console.WriteLine("null packet");
 			} catch (Exception e) { 
 				Debug.Log( e.Message );
-				Console.WriteLine(e.Message); 
+				Console.WriteLine( e.Message ); 
 			}
 		}
 	}

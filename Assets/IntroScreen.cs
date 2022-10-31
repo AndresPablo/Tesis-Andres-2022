@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class IntroScreen : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class IntroScreen : MonoBehaviour
     [SerializeField] Image barraIzq;
     [SerializeField] Image barraDer;
     [SerializeField] int cantidadMinima = 3;
+    [SerializeField] Transform contenedorEstatuas;
+    [SerializeField] TextMeshProUGUI readyLabel;
     public int cantidad;
     public float magnitudTotal;
     bool listo;
@@ -38,30 +41,53 @@ public class IntroScreen : MonoBehaviour
         magnitudTotal = magnitud;
         cantidad = a + b;
 
+        foreach(Transform child in contenedorEstatuas)
+        {
+            child.gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < cantidad+1; i++)
+        {
+            contenedorEstatuas.GetChild(i).gameObject.SetActive(true);
+        }
 
         if (cantidad >= cantidadMinima)
         {
             if(listo == false)
             {
-                Invoke("OnListoParaEmpezar", 5f);
                 listo = true;
+                readyLabel.text = "Pulsen un botón para empezar";
             }
-            
+        }
+        else
+        {
+            listo = false;
+            readyLabel.text = "Esperando jugadores...";
         }
     }
 
-    public void OnListoParaEmpezar()
+
+
+    public void Empezar()
     {
         canvas.enabled = false;
         GameManager.singleton.EmpezarJuego();
         this.enabled = false;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         MonitorearPosiciones();
-        barraIzq.fillAmount = (float)cantidad / cantidadMinima;
-        barraDer.fillAmount = (float)cantidad / cantidadMinima;
+        //barraIzq.fillAmount = (float)cantidad / cantidadMinima;
+        //barraDer.fillAmount = (float)cantidad / cantidadMinima;
+
+        if(listo)
+        {
+            if(Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2"))
+            {
+                Empezar();
+            }
+        }
     }
 }

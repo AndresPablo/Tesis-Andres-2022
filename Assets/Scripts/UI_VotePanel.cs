@@ -35,8 +35,8 @@ public class UI_VotePanel : MonoBehaviour
         //barra_B.fillAmount = votosSi / 10f;
 
 
-        nuevoValor_A = votosSi/4f;
-        nuevoValor_B = votosNo/4f;
+        nuevoValor_A = votosSi/3f;
+        nuevoValor_B = votosNo/3f;
     }
 
     public void NuevoVoto(bool si)
@@ -49,8 +49,8 @@ public class UI_VotePanel : MonoBehaviour
         else
             votosNo++;
 
-        nuevoValor_A = votosSi / 4f;
-        nuevoValor_B = votosNo / 4f;
+        nuevoValor_A = votosSi/3f;
+        nuevoValor_B = votosSi/3f;
     }
 
     private void Update()

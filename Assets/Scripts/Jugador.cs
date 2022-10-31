@@ -21,6 +21,7 @@ public class Jugador : MonoBehaviour
     public delegate void JugadorDelegate();
     public static event JugadorDelegate Ev_Muere;
 
+
     void Start()
     {
         charControl = GetComponent<CharacterController2D>();
@@ -30,22 +31,21 @@ public class Jugador : MonoBehaviour
         VoteEffector.Ev_Gravedad += OnSwitchGravity;
     }
 
-
-
     public void Matar()
     {
         if (Estado == PlayerState.DEAD)
             return;
         Estado = PlayerState.DEAD;
-        graficos.SetActive(false);
-        charControl.enabled = false;
+        //graficos.SetActive(false);
+        //charControl.enabled = false;
+        charControl.cameraFollow = false;
         col.enabled = false;
-        if(Ev_Muere != null)
+        anim.SetBool("isDead", true);
+        if (Ev_Muere != null)
         {
             Ev_Muere.Invoke();
         }
         if (muerte_SFX) AudioManager.instance.PlayOneShot(muerte_SFX);
-
     }
 
     public void Spawn()
@@ -54,6 +54,8 @@ public class Jugador : MonoBehaviour
         graficos.SetActive(true);
         col.enabled = true;
         charControl.enabled = true;
+        charControl.cameraFollow = true;
+        anim.SetBool("isDead", false);
         rb.velocity = Vector2.zero;
         if (spawn_SFX) AudioManager.instance.PlayOneShot(spawn_SFX);
     }

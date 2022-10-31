@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TileProps : MonoBehaviour
@@ -12,6 +10,7 @@ public class TileProps : MonoBehaviour
     [SerializeField] Color colorNormal = Color.white;
     [SerializeField] Color colorVictoria = Color.cyan;
     [SerializeField] Color colorPeligro = Color.red;
+    [SerializeField] Color colorFantasma = Color.gray;
     [SerializeField] Color colorRebote = Color.magenta;
     Collider2D mCol;
     SpriteRenderer mRenderer;
@@ -37,7 +36,7 @@ public class TileProps : MonoBehaviour
             {
                 mRenderer.color = colorRebote;
             }else
-                mRenderer.color = Color.white;
+                mRenderer.color = colorNormal;
         }
 
         Color colorActual = mRenderer.color;
@@ -47,6 +46,7 @@ public class TileProps : MonoBehaviour
             colorActual.a = 1f;
         }else
         {
+            colorActual = colorFantasma;
             colorActual.a = .5f;
         }
 

@@ -10,6 +10,7 @@ public class UI_PanelActa : MonoBehaviour
     [SerializeField] TextMeshProUGUI adjetivo;
     [SerializeField] Image tileA;
     [SerializeField] Image tileB;
+    [SerializeField] bool esIsq;
     [Space]
     [SerializeField] Color colorSolido = Color.white;
     [SerializeField] Color colorFantasma = Color.white;
@@ -80,7 +81,7 @@ public class UI_PanelActa : MonoBehaviour
                 else
                 {
                     frase.text = "Convertir en";
-                    adjetivo.text = "DURO";
+                    adjetivo.text = "SOLIDO";
                     adjetivo.color = colorSolido;
                 }
                 break;
@@ -94,12 +95,20 @@ public class UI_PanelActa : MonoBehaviour
         Invoke("OrdenarLayout", .05f);
 
         // Animacion
-        GetComponent<Animator>().Play("mostrar");
+        if(esIsq == true)
+        {
+            GetComponent<Animator>().Play("mover_a_izq");
+        }
+        else if(esIsq == false)
+        {
+            GetComponent<Animator>().Play("mover_a_der");
+        }
+
     }
 
     void LimpiarInfo()
     {
-        GetComponent<Animator>().Play("oculto");
+        GetComponent<Animator>().Play("Oculto");
         tileA.enabled = false;
         tileB.enabled = false;
         frase.text = "descripcion";

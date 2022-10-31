@@ -36,6 +36,7 @@ public class VoteControl : MonoBehaviour
     void Start()
     {
         Debug.Log("Centro: " + Screen.width / 2);
+        dataActual = effector.GetRandomPoll();      // TODO BORRAR test
     }
 
     public void Inicializar()
@@ -44,7 +45,8 @@ public class VoteControl : MonoBehaviour
         voteTimer = maxVoteTime;
         votos_no = 0;
         votos_si = 0;
-        dataActual = null; 
+        dataActual = null;
+        miPanel.Limpiar();
         StartCoroutine("RutinadeVotacion");
     }
 
@@ -137,7 +139,8 @@ public class VoteControl : MonoBehaviour
         if (GameManager.singleton.gameOver == true)
             return;
         votingInProgress = true;
-        dataActual = effector.GetRandomPoll(); 
+        dataActual = effector.GetRandomPoll();
+
         OnVotingOpen.Invoke();
         if(Ev_OnVotingOpen != null)
         {

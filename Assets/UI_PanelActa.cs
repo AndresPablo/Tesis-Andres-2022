@@ -11,6 +11,7 @@ public class UI_PanelActa : MonoBehaviour
     [SerializeField] Image tileA;
     [SerializeField] Image tileB;
     [SerializeField] bool esIsq;
+    [SerializeField] bool esDer;
     [Space]
     [SerializeField] Color colorSolido = Color.white;
     [SerializeField] Color colorFantasma = Color.white;
@@ -21,7 +22,18 @@ public class UI_PanelActa : MonoBehaviour
     private void Start()
     {
         LimpiarInfo();
+        OrdenarLayout();
+
+        if (esIsq == true)
+        {
+            GetComponent<Animator>().SetTrigger("OnMostrarIzquierda");
+        }
+        if (esDer)
+        {
+            GetComponent<Animator>().SetTrigger("OnMostrarDerecha");
+        }
     }
+
 
     public void CargarInfo(Acta acta)
     {
@@ -97,11 +109,11 @@ public class UI_PanelActa : MonoBehaviour
         // Animacion
         if(esIsq == true)
         {
-            GetComponent<Animator>().Play("mover_a_izq");
+            GetComponent<Animator>().SetTrigger("OnMostrarIzquierda");
         }
-        else if(esIsq == false)
+        if (esDer)
         {
-            GetComponent<Animator>().Play("mover_a_der");
+            GetComponent<Animator>().SetTrigger("OnMostrarDerecha");
         }
 
     }
@@ -114,11 +126,15 @@ public class UI_PanelActa : MonoBehaviour
         frase.text = "descripcion";
         adjetivo.text = "adjetivo";
         adjetivo.color = colorSolido;
+        GetComponent<Animator>().ResetTrigger("OnMostrarDerecha");
+        GetComponent<Animator>().ResetTrigger("OnMostrarIzquierda");
     }
 
     void OrdenarLayout()
     {
         tileA.enabled = !tileA.enabled;
         tileA.enabled = !tileA.enabled;
+        tileB.enabled = !tileB.enabled;
+        tileB.enabled = !tileB.enabled;
     }
 }

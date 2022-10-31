@@ -8,8 +8,6 @@ public class UI_VotePanel : MonoBehaviour
     [SerializeField] UI_PanelActa acta_izq;
     [SerializeField] UI_PanelActa acta_der;
     [Space]
-    public Text no_label;
-    public Text si_label;
     int votosSi;
     int votosNo;
     [Space]
@@ -25,23 +23,21 @@ public class UI_VotePanel : MonoBehaviour
         Limpiar();
         VoteControl.Ev_NuevoVotoSi += NuevoVoto;
         VoteControl.Ev_NuevoVotoNo += NuevoVoto;
+        Mostrar();
     }
 
     public void OverrideVotos(int a, int b)
     {
         votosSi = a;
         votosNo = b;
-        //barra_A.fillAmount = votosNo / 10f;
-        //barra_B.fillAmount = votosSi / 10f;
+        int votosTotales = a + b;
 
-
-        nuevoValor_A = votosSi/3f;
-        nuevoValor_B = votosNo/3f;
+        nuevoValor_A = votosSi/ (float)votosTotales;
+        nuevoValor_B = votosNo/ (float)votosTotales;
     }
 
     public void NuevoVoto(bool si)
     {
-        Debug.Log("nuevo voto");
         if (si)
         {
             votosSi++;
@@ -64,6 +60,11 @@ public class UI_VotePanel : MonoBehaviour
 
     public void Mostrar()
     {
+        Invoke("MostrarPanelesDeActa", .1f);
+    }
+
+    void MostrarPanelesDeActa()
+    {
         gameObject.SetActive(true);
         acta_izq.CargarInfo(vControl.dataActual.actaA);
         acta_der.CargarInfo(vControl.dataActual.actaB);
@@ -72,8 +73,6 @@ public class UI_VotePanel : MonoBehaviour
     public void Limpiar()
     {
         gameObject.SetActive(false);
-        //si_label.text = "SI: 0";
-        //no_label.text = "NO: 0";
         votosSi = votosNo = 0;
         barra_A.fillAmount = 0;
         barra_B.fillAmount = 0;

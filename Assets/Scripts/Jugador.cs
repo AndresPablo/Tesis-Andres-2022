@@ -20,6 +20,7 @@ public class Jugador : MonoBehaviour
 
     public delegate void JugadorDelegate();
     public static event JugadorDelegate Ev_Muere;
+    public static event JugadorDelegate Ev_Spawnea;
 
 
     void Start()
@@ -38,7 +39,6 @@ public class Jugador : MonoBehaviour
         Estado = PlayerState.DEAD;
         //graficos.SetActive(false);
         //charControl.enabled = false;
-        charControl.cameraFollow = false;
         col.enabled = false;
         anim.SetBool("isDead", true);
         if (Ev_Muere != null)
@@ -54,10 +54,13 @@ public class Jugador : MonoBehaviour
         graficos.SetActive(true);
         col.enabled = true;
         charControl.enabled = true;
-        charControl.cameraFollow = true;
         anim.SetBool("isDead", false);
         rb.velocity = Vector2.zero;
         if (spawn_SFX) AudioManager.instance.PlayOneShot(spawn_SFX);
+        if (Ev_Spawnea != null)
+        {
+            Ev_Spawnea.Invoke();
+        }
     }
 
     public void Rebotar(float fuerza = 1f)
@@ -94,5 +97,10 @@ public class Jugador : MonoBehaviour
         {
             anim.Play("Walk");
         }*/
+    }
+
+    public void ApagarCharControl()
+    {
+        charControl.enabled = false;
     }
 }

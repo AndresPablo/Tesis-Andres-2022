@@ -28,10 +28,12 @@ public class GameManager : MonoBehaviour
     public Color peligroColor;
     public Color normalColor;
     public UnityEvent OnVictory;
+    public UnityEvent OnRestart;
     int nivelIndex;
     public int muertes;
     public float tiempo;
     Tilemap NivelActual { get { return niveles[nivelIndex]; } }
+    public bool gameOver;
 
     void Start()
     {
@@ -59,6 +61,11 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R))
         {
             Reiniciar();
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            PasarNivel();
         }
 
         // sumamos los segundos en el Update
@@ -92,6 +99,8 @@ public class GameManager : MonoBehaviour
         if(nivelIndex >= niveles.Length)
         {
             Victoria();
+            Votador.CancelarVotaciones();
+            return;
         }
 
         Votador.AbortarVotacion();
@@ -118,6 +127,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject GetObjetoDeTipoEnNivel(TipoObjeto tipo)
     {
+        if (gameOver)
+            return null;
+
         int cantHijos;
         if (NivelActual)
         {
@@ -203,12 +215,34 @@ public class GameManager : MonoBehaviour
     public void Victoria()
     {
         OnVictory.Invoke();
+        Votador.AbortarVotacion();
+        Votador.CancelarVotaciones();
+        player.ApagarCharControl();
+        gameOver = true;
     }
 
     public void Reiniciar()
     {
         muertes = 0;
-        SceneManager.LoadScene(0);
+        tiempo = 0;
+        //SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+        nivelIndex = 0;
+        gameOver = false;
+        // Encender nivel 1
+        for (int i = 0; i < niveles.Length; i++)
+        {
+            if (nivelIndex == i)
+            {
+                niveles[i].gameObject.SetActive(true);
+            }
+            else
+                niveles[i].gameObject.SetActive(false);
+        }
+        if (OnRestart != null)
+            OnRestart.Invoke();
+        Debug.Log("__Juego reiniciado__");
+
     }
 
     void InvocarRespawn()

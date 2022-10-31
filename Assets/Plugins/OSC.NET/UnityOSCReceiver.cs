@@ -23,9 +23,12 @@ public class UnityOSCReceiver : MonoBehaviour {
 			
 	public void Start() {
 
-			disconnect();
+		disconnect();
 
-			try {
+		if (receiver != null)
+			return;
+
+		try {
 			connected = true;
 			receiver = new OSCReceiver(port);
 			thread = new Thread(new ThreadStart(listen));

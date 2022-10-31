@@ -10,8 +10,6 @@ public class CharacterController2D : MonoBehaviour
     public float maxSpeed = 3.4f;
     public float jumpHeight = 6.5f;
     public float gravityScale = 1.5f;
-    public bool cameraFollow = true;
-    public Camera mainCamera;
     public Transform groundCheckObj;
     [SerializeField] bool facingRight = true;
     [SerializeField] float moveDirection = 0;
@@ -35,16 +33,12 @@ public class CharacterController2D : MonoBehaviour
         anim = GetComponent<Animator>();
         facingRight = t.localScale.x > 0;
 
-        if (mainCamera)
-        {
-            if(cameraFollow)
-                cameraPos = mainCamera.transform.position;
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
         // Movement controls
         if (Input.GetAxis("Horizontal") == -1 || Input.GetAxis("Horizontal") == 1)
         {
@@ -88,12 +82,6 @@ public class CharacterController2D : MonoBehaviour
             {
                 Saltar();
             }
-        }
-
-        if (mainCamera)
-        {
-            if (cameraFollow)
-                cameraPos = mainCamera.transform.position;
         }
     }
 

@@ -134,6 +134,8 @@ public class VoteControl : MonoBehaviour
        
     void AbrirVotacion()
     {
+        if (GameManager.singleton.gameOver == true)
+            return;
         votingInProgress = true;
         dataActual = effector.GetRandomPoll(); 
         OnVotingOpen.Invoke();
@@ -145,26 +147,19 @@ public class VoteControl : MonoBehaviour
 
     void CerrarVotacion()
     {
-        votingInProgress = false;
-        voteTimer = maxVoteTime;
         ProcesarResultado();
         if (Ev_OnVotingClose != null)
         {
             Ev_OnVotingClose.Invoke(dataActual);
         }
-        votos_no = 0;
-        votos_si = 0;
-        dataActual = null;
         OnVotingClose.Invoke();
         AudioManager.instance.PlayOneShot(voteClose_SFX);
-        StartCoroutine("RutinadeVotacion");
+        Inicializar();
     }
 
     // igual, solo que no Procesa() los resultados
     public void AbortarVotacion()
     {
-        votingInProgress = false;
-        voteTimer = maxVoteTime;
         if (Ev_OnVotingClose != null)
         {
             Ev_OnVotingClose.Invoke(dataActual);    // TODO: DESFAZAR?? ose cambiar por evento de aborto
@@ -174,15 +169,21 @@ public class VoteControl : MonoBehaviour
             Ev_OnVotingAbort.Invoke(dataActual);
         }
         OnVotingClose.Invoke();
-        votos_no = 0;
-        votos_si = 0;
+        Inicializar();
+    }
+
+    public void CancelarVotaciones()
+    {
+        StopAllCoroutines();
+        votingInProgress = false;
         dataActual = null;
-        StartCoroutine("RutinadeVotacion");
     }
 
     IEnumerator RutinadeVotacion()
     {
         yield return new WaitForSeconds(tiempoEntreElecciones);
+        if (GameManager.singleton.gameOver)
+            yield return null;
         AbrirVotacion();
     }
 }

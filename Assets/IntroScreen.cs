@@ -1,4 +1,4 @@
-using System.Collections;
+using extOSC;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +7,7 @@ using TMPro;
 public class IntroScreen : MonoBehaviour
 {
     [SerializeField] csOpenTSPSListener TSPS_Listener;
+    [SerializeField] ReceptorFaceCap_OSC mensajeroOSC;
     [SerializeField] Canvas canvas;
     [Space]
     [SerializeField] Image barraIzq;
@@ -25,7 +26,9 @@ public class IntroScreen : MonoBehaviour
         int a = 0;
         int b = 0;
         float magnitud = 0;
-        foreach (KeyValuePair<int, GameObject> blob in TSPS_Listener.blobGameObjects)
+        a += mensajeroOSC.votos_I;
+        b += mensajeroOSC.votos_D;
+        /*foreach (KeyValuePair<int, GameObject> blob in TSPS_Listener.blobGameObjects)
         {
             magnitud += blob.Value.transform.localScale.magnitude;
             if (blob.Value.transform.position.x < 0)
@@ -36,7 +39,7 @@ public class IntroScreen : MonoBehaviour
             {
                 b++;
             }
-        }
+        }*/
 
         magnitudTotal = magnitud;
         cantidad = a + b;
@@ -65,8 +68,6 @@ public class IntroScreen : MonoBehaviour
             readyLabel.text = "Esperando jugadores...";
         }
     }
-
-
 
     public void Empezar()
     {

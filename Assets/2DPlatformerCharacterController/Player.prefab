@@ -221,7 +221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4743262534059833518
 Transform:
   m_ObjectHideFlags: 0
@@ -254,7 +254,6 @@ MonoBehaviour:
   maxSpeed: 3.4
   jumpHeight: 6.5
   gravityScale: 1.5
-  mainCamera: {fileID: 0}
   groundCheckObj: {fileID: 1438038750}
   facingRight: 0
   moveDirection: 0

@@ -5,11 +5,11 @@ using UnityEngine.Events;
 
 public class VoteControl : MonoBehaviour
 {
-
     public bool votingInProgress;
     public float tiempoEntreElecciones = 6f;
     public float maxVoteTime = 6f;
     public float voteTimer;
+    public bool invertir;
     public int votos_si;
     public int votos_no;
     [SerializeField] AudioClip voteClose_SFX;
@@ -52,8 +52,16 @@ public class VoteControl : MonoBehaviour
 
     public void OverrideVotos(int a, int b)
     {
-        votos_si = a;
-        votos_no = b;
+        if(invertir)
+        {
+            votos_si = b;
+            votos_no = a;
+        }
+        else
+        {
+            votos_si = a;
+            votos_no = b;
+        }
         miPanel.OverrideVotos(votos_si, votos_no);
     }
 
@@ -94,6 +102,9 @@ public class VoteControl : MonoBehaviour
     // Aca tomamos la data del TSPS y la traducimos a un conteo de votos
     void MonitorearPosiciones()
     {
+        // TODO: traba
+        return;
+
         int a = 0;
         int b = 0;
         foreach (KeyValuePair<int, GameObject> blob in TSPS_Listener.blobGameObjects)
@@ -114,11 +125,11 @@ public class VoteControl : MonoBehaviour
     {
         if(votos_si > votos_no)
         {
-            effector.ProcesarResultado(dataActual.actaA);
+            effector.ProcesarResultado(dataActual.actaB);
         }else
         if(votos_no > votos_si)
         {
-            effector.ProcesarResultado(dataActual.actaB);
+            effector.ProcesarResultado(dataActual.actaA);
         }else
         if (votos_no == votos_si)
         {
@@ -188,5 +199,10 @@ public class VoteControl : MonoBehaviour
         if (GameManager.singleton.gameOver)
             yield return null;
         AbrirVotacion();
+    }
+
+    public void ToogleInvertirCamara(bool valor)
+    {
+        invertir = valor;
     }
 }

@@ -423,6 +423,8 @@ MonoBehaviour:
   adjetivo: {fileID: 3112477432349771871}
   tileA: {fileID: 3112477432371181726}
   tileB: {fileID: 3112477432284602387}
+  esIsq: 0
+  esDer: 0
   colorSolido: {r: 1, g: 1, b: 1, a: 1}
   colorFantasma: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 0.69803923}
   colorGelatina: {r: 1, g: 0, b: 1, a: 1}
@@ -430,7 +432,7 @@ MonoBehaviour:
   colorVictoria: {r: 0, g: 1, b: 1, a: 1}
 --- !u!95 &3112477431017732185
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -447,7 +449,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3112477431692270528
 GameObject:
   m_ObjectHideFlags: 0

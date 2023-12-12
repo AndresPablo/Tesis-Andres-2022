@@ -3,7 +3,7 @@ guid: 33e802ae27eacc44f80d07006db49ea4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -63,6 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -1029,56 +1030,56 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Spritesheet-julio-72dpi_28: 1112774599
-      Spritesheet-julio-72dpi_4: 833751022
-      Spritesheet-julio-72dpi_10: 1403953024
-      Spritesheet-julio-72dpi_17: -1808025773
       Spritesheet-julio-72dpi_0: -369640312
-      Spritesheet-julio-72dpi_37: -2006583895
-      Spritesheet-julio-72dpi_23: 758268058
-      Spritesheet-julio-72dpi_35: 1122963078
-      Spritesheet-julio-72dpi_3: -144417796
-      Spritesheet-julio-72dpi_24: 1667319945
-      Spritesheet-julio-72dpi_6: -1581464749
+      Spritesheet-julio-72dpi_1: -566889120
+      Spritesheet-julio-72dpi_10: 1403953024
       Spritesheet-julio-72dpi_11: 304617891
-      Spritesheet-julio-72dpi_29: 150190072
-      Spritesheet-julio-72dpi_38: -493793460
-      Spritesheet-julio-72dpi_45: -2102698904
       Spritesheet-julio-72dpi_12: 1915683169
-      Spritesheet-julio-72dpi_34: -16467317
-      Spritesheet-julio-72dpi_49: -614900560
-      Spritesheet-julio-72dpi_8: -1136877355
-      Spritesheet-julio-72dpi_43: -1431403547
-      Spritesheet-julio-72dpi_31: 1655089543
-      Spritesheet-julio-72dpi_39: -322057789
-      Spritesheet-julio-72dpi_15: 372428858
-      Spritesheet-julio-72dpi_19: -2052471101
-      Spritesheet-julio-72dpi_20: 673621975
-      Spritesheet-julio-72dpi_9: -1231145063
-      Spritesheet-julio-72dpi_5: 1526189023
-      Spritesheet-julio-72dpi_25: 590543566
-      Spritesheet-julio-72dpi_42: 1627065906
-      Spritesheet-julio-72dpi_46: 43419111
-      Spritesheet-julio-72dpi_41: -219764445
-      Spritesheet-julio-72dpi_2: 1301850339
       Spritesheet-julio-72dpi_13: 1527714225
-      Spritesheet-julio-72dpi_30: -1974908890
-      Spritesheet-julio-72dpi_26: 1624777151
-      Spritesheet-julio-72dpi_32: 1584740702
-      Spritesheet-julio-72dpi_44: -1900387275
-      Spritesheet-julio-72dpi_21: -1151840952
-      Spritesheet-julio-72dpi_18: 1319456212
-      Spritesheet-julio-72dpi_22: 1657836646
       Spritesheet-julio-72dpi_14: -1629158172
+      Spritesheet-julio-72dpi_15: 372428858
+      Spritesheet-julio-72dpi_16: -755409079
+      Spritesheet-julio-72dpi_17: -1808025773
+      Spritesheet-julio-72dpi_18: 1319456212
+      Spritesheet-julio-72dpi_19: -2052471101
+      Spritesheet-julio-72dpi_2: 1301850339
+      Spritesheet-julio-72dpi_20: 673621975
+      Spritesheet-julio-72dpi_21: -1151840952
+      Spritesheet-julio-72dpi_22: 1657836646
+      Spritesheet-julio-72dpi_23: 758268058
+      Spritesheet-julio-72dpi_24: 1667319945
+      Spritesheet-julio-72dpi_25: 590543566
+      Spritesheet-julio-72dpi_26: 1624777151
+      Spritesheet-julio-72dpi_27: -275161850
+      Spritesheet-julio-72dpi_28: 1112774599
+      Spritesheet-julio-72dpi_29: 150190072
+      Spritesheet-julio-72dpi_3: -144417796
+      Spritesheet-julio-72dpi_30: -1974908890
+      Spritesheet-julio-72dpi_31: 1655089543
+      Spritesheet-julio-72dpi_32: 1584740702
+      Spritesheet-julio-72dpi_33: -353088492
+      Spritesheet-julio-72dpi_34: -16467317
+      Spritesheet-julio-72dpi_35: 1122963078
+      Spritesheet-julio-72dpi_36: 1544685387
+      Spritesheet-julio-72dpi_37: -2006583895
+      Spritesheet-julio-72dpi_38: -493793460
+      Spritesheet-julio-72dpi_39: -322057789
+      Spritesheet-julio-72dpi_4: 833751022
+      Spritesheet-julio-72dpi_40: -1023762255
+      Spritesheet-julio-72dpi_41: -219764445
+      Spritesheet-julio-72dpi_42: 1627065906
+      Spritesheet-julio-72dpi_43: -1431403547
+      Spritesheet-julio-72dpi_44: -1900387275
+      Spritesheet-julio-72dpi_45: -2102698904
+      Spritesheet-julio-72dpi_46: 43419111
       Spritesheet-julio-72dpi_47: -2057633255
       Spritesheet-julio-72dpi_48: 355669293
-      Spritesheet-julio-72dpi_1: -566889120
+      Spritesheet-julio-72dpi_49: -614900560
+      Spritesheet-julio-72dpi_5: 1526189023
+      Spritesheet-julio-72dpi_6: -1581464749
       Spritesheet-julio-72dpi_7: -2048537880
-      Spritesheet-julio-72dpi_36: 1544685387
-      Spritesheet-julio-72dpi_33: -353088492
-      Spritesheet-julio-72dpi_16: -755409079
-      Spritesheet-julio-72dpi_27: -275161850
-      Spritesheet-julio-72dpi_40: -1023762255
+      Spritesheet-julio-72dpi_8: -1136877355
+      Spritesheet-julio-72dpi_9: -1231145063
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

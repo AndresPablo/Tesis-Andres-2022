@@ -1,17 +1,23 @@
 using UnityEngine;
+using System.Collections;
 
 public enum PlayerState { IDLE, WALK, AIR, DEAD }
+public enum TipoEnergia { FOSIL, EOLICA, HIDRO, TERMO  }
 public class Jugador : MonoBehaviour
 {
     CharacterController2D charControl;
     Rigidbody2D rb;
     Collider2D col;
     Animator anim;
+    public float energiaMax;
+    public float energiaActual;
+    public TipoEnergia tipo_energiaActual;
+    public PlayerState Estado;
+    [Header("Referencias")]
     [SerializeField]SpriteRenderer cabeza;
     [SerializeField] SpriteRenderer pieFrente;
     [SerializeField] SpriteRenderer pieAtras;
     [SerializeField] GameObject graficos;
-    public PlayerState Estado;
     [Space]
     [SerializeField] AudioClip salto_SFX;
     [SerializeField] AudioClip rebote_SFX;
@@ -30,13 +36,26 @@ public class Jugador : MonoBehaviour
         col = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
         VoteEffector.Ev_Gravedad += OnSwitchGravity;
+        StartCoroutine("FallCheck");
+    }
+
+    private void Update() {
+        if(Estado != PlayerState.DEAD)
+        {
+            // TODO: setear decay (1)
+            energiaActual -= 1 * Time.deltaTime;
+
+        }
+        if(energiaActual <= 0)
+            energiaActual = 0;
+        else
+        if(energiaActual >= energiaMax)
+            energiaActual = energiaMax;
     }
 
     public void Matar()
     {
-        if (Estado == PlayerState.DEAD)
-            return;
-        Estado = PlayerState.DEAD;
+        CambiarEstado(PlayerState.DEAD);
         //graficos.SetActive(false);
         //charControl.enabled = false;
         col.enabled = false;
@@ -52,7 +71,7 @@ public class Jugador : MonoBehaviour
     {
         Estado = PlayerState.IDLE;
         graficos.SetActive(true);
-        col.enabled = true;
+         col.enabled = true;
         charControl.enabled = true;
         anim.SetBool("isDead", false);
         rb.velocity = Vector2.zero;
@@ -79,28 +98,39 @@ public class Jugador : MonoBehaviour
     {
         if (Estado == _nuevoEstado)
             return;
-        /*if(Estado == PlayerState.IDLE)
+        switch(Estado)
         {
-            anim.Play("Idle");
-        }else
-        if (Estado == PlayerState.AIR)
-        {
-            anim.Play("Air");
+            case PlayerState.IDLE:
+                anim.Play("Idle");
+            break;
+            case PlayerState.AIR:
+                anim.Play("Air");
+            break;
+            case PlayerState.DEAD:
+                
+            break;
+            case PlayerState.WALK:
+                anim.Play("Walk");  
+            break;
         }
-        else
-        if (Estado == PlayerState.DEAD)
-        {
-            
-        }
-        else
-        if (Estado == PlayerState.WALK)
-        {
-            anim.Play("Walk");
-        }*/
     }
 
     public void ApagarCharControl()
     {
         charControl.enabled = false;
+    }
+
+    IEnumerator FallCheck()
+    {
+        yield return new WaitForSeconds(2f);
+        if(Estado != PlayerState.DEAD)
+        {
+            if(Vector2.Distance(transform.position, Vector2.zero) > 200)
+            {
+                Matar();
+            }
+        }
+        // vuelve a iniciar el timer de chequeo
+        StartCoroutine("FallCheck");
     }
 }

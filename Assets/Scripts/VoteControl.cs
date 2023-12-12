@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+namespace Viejo{
 public class VoteControl : MonoBehaviour
 {
     public bool votingInProgress;
@@ -35,8 +36,6 @@ public class VoteControl : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Centro: " + Screen.width / 2);
-        dataActual = effector.GetRandomPoll();      // TODO BORRAR test
     }
 
     public void Inicializar()
@@ -197,7 +196,11 @@ public class VoteControl : MonoBehaviour
     {
         yield return new WaitForSeconds(tiempoEntreElecciones);
         if (GameManager.singleton.gameOver)
+        {
+            CancelarVotaciones();
             yield return null;
+        }
+            
         AbrirVotacion();
     }
 
@@ -205,4 +208,5 @@ public class VoteControl : MonoBehaviour
     {
         invertir = valor;
     }
+}
 }

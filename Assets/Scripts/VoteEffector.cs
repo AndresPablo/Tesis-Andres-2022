@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using UnityEngine;
+using Viejo;
 
 public class VoteEffector : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class VoteEffector : MonoBehaviour
 
     public void ProcesarResultado(Acta resultado)
     {
-        // MUCHO TRABAJO ACA
+        // TODO: MUCHO TRABAJO ACA
         switch (resultado.Tipo)
         {
             case TipoVoto.GRAV:

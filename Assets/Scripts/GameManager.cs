@@ -3,8 +3,9 @@ using ArduinoSerialControl;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using UnityEngine.Tilemaps;
+using SistemaVotacion;
 
-
+namespace Viejo{
 public class GameManager : MonoBehaviour
 {
     public static GameManager singleton;
@@ -55,6 +56,8 @@ public class GameManager : MonoBehaviour
         // Empezamos a votar
         Votador.Inicializar();
     }
+
+
 
     void Update()
     {
@@ -142,20 +145,21 @@ public class GameManager : MonoBehaviour
             
         
         GameObject go = null;
-        foreach(Transform ch in NivelActual.transform)
+        foreach (Transform ch in NivelActual.transform)
         {
             TileProps props = ch.GetComponent<TileProps>();
             if (!props) continue;
             if(props.Tipo == tipo)
             {
                 go = props.gameObject;
+                Debug.Log("tomando objeto del tipo: " + tipo);
                 
                 return go;
             }
         }
         if(go == null)
         {
-            Debug.LogWarning("No hay nada");
+            Debug.LogError("No hay nada del tipo �["  + tipo + "] en el nivel actual.");
         }
         return go;
     }
@@ -258,5 +262,7 @@ public enum GameState { INTRO, PLAY, FIN }
 
 public struct GameSettings{
 
+
+}
 
 }

@@ -25,16 +25,21 @@ namespace Demokratos{
         public UnityEvent OnVictory;
         public UnityEvent OnRestart;
         public Vector2 fuerzaVientoGlobal;
+        [SerializeField] float tiempoRespawn = 3f;
+        [SerializeField] float tiempoEntreNiveles = 2f;
 
         public JugadorLogica Jugador { get { return jugador; }}
+        public Vector2 JugadorPos { get { return jugador.transform.position; }}
         public int bateriasEnNivel;
         public int bateriasEnNivel_Max;
 
-        #region EVENTOS de BATERIA
+        #region EVENTOS de GameManager
+            public delegate void VoidDelegate();
             public delegate void BateriasDelegate(int actuales, int totales);
             public delegate void NivelDelegate(int nivel_actual);
             public static event BateriasDelegate Ev_CuentaBaterias;
             public static event NivelDelegate Ev_PasoNivel;
+            public static event VoidDelegate Ev_InvertirGravedad;
         #endregion
 
         void Start()
@@ -66,17 +71,26 @@ namespace Demokratos{
         {
             Niveles.LoadLevel(0);
             Jugador.gameObject.SetActive(true);
-            Jugador.Spawn(Niveles.spawnPos) ;
+            Jugador.SetSpawn(LevelManager.spawnPos);
+            Jugador.Spawn(LevelManager.spawnPos) ;
             Jugador.ResetearEnergia();
+        }
+
+        public void EmpezarNuevoNivel()
+        {
+            VotingLogic.singleton.ToogleVotacion();
+            Niveles.LoadNextLevel();
+            Jugador.Spawn(LevelManager.spawnPos) ;
+            Jugador.SetSpawn(LevelManager.spawnPos);
+            Jugador.ResetearEnergia();
+            Jugador.SetearTipoEnergia(TipoEnergia.FOSIL); // TODO: dejar el estado del nivel anterior?
+            bateriasEnNivel_Max = Niveles.GetCantidadBaterias();
         }
 
         public void NivelCompletado()
         {
-            Niveles.LoadNextLevel();
-            Jugador.Spawn(Niveles.spawnPos) ;
-            Jugador.ResetearEnergia();
-            Jugador.SetearTipoEnergia(TipoEnergia.FOSIL); // TODO: dejar el estado del nivel anterior?
-            bateriasEnNivel_Max = Niveles.GetCantidadBaterias();
+            VotingLogic.singleton.ToogleVotacion(true);
+            Invoke("EmpezarNuevoNivel",tiempoEntreNiveles);
         }
 
         void Update()
@@ -86,13 +100,23 @@ namespace Demokratos{
 
         void ChequearPasoNivel()
         {
-            int baterias = Niveles.GetCantidadBaterias();
+            bateriasEnNivel = Niveles.GetCantidadBaterias();
             if(Ev_CuentaBaterias != null)
-                Ev_CuentaBaterias(baterias, bateriasEnNivel_Max);
-            if(baterias  <= 0)
+                Ev_CuentaBaterias(bateriasEnNivel, bateriasEnNivel_Max);
+            if(bateriasEnNivel  <= 0)
             {
                 NivelCompletado();
             }
+        }
+
+        public void InvertirGravedad()
+        {
+
+        }
+
+        public float DistanciaDelJugador(Vector2 origen)
+        {
+            return Vector2.Distance(origen, JugadorPos);
         }
     }
 }

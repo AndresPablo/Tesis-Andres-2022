@@ -181,6 +181,15 @@ namespace TarodevController
             }
         }
 
+        // Frena la velocidad y el input, util para cuando revive porque capaz murio en movimiento
+        public void Frenar()
+        {
+            _frameInput.Move.x = 0;
+            _frameInput.Move.y = 0;
+            _frameVelocity.x = 0;
+            _frameVelocity.y = 0;
+        }
+
         // Ponemos una fuerza que se suma a las del input
         public void SetExternalForce(Vector2 force)
         {

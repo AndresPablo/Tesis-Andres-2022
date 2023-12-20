@@ -6,8 +6,8 @@ namespace Demokratos{
     public class LevelManager : MonoBehaviour
     {
         public Transform[] levelsPrefabs;   
-        public Vector3 spawnPos {get; private set;}
-        private int currentLevel;
+        public static Vector3 spawnPos {get; private set;}
+        public static int currentLevel {get; private set;}
         Transform levelTransform;
         
         void Start()
@@ -61,7 +61,7 @@ namespace Demokratos{
                 if(child.GetComponent<Item_Bateria>())
                     cantidadBaterias++;
             }
-            return cantidadBaterias;
+            return cantidadBaterias-1;
         } 
     }
 }

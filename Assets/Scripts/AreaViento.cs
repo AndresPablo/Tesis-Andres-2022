@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Demokratos.Energia;
 using TarodevController;
 using UnityEngine;
 
@@ -9,9 +10,13 @@ namespace Demokratos
     
     public class AreaViento : MonoBehaviour
     {
-        public Vector2 vectorViento;
+        [SerializeField] Vector2 vectorViento;
+        [SerializeField] TipoEmpuje tipoEmpuje;
+        [SerializeField] [Range(.5f, 5f)]float recarga = 1f;
+        JugadorLogica JugadorLogica;
 
         private void Start() {
+            JugadorLogica = Game_Manager_Nuevo.singleton.Jugador;
         }
 
         void OnTriggerStay2D(Collider2D other)
@@ -22,7 +27,14 @@ namespace Demokratos
                     //other.GetComponent<Rigidbody2D>().AddForce(vectorViento,ForceMode2D.Force);
                 // VIEJO: es para que haya viento en todo el mundo
                     //other.GetComponent<PlayerController>().SetExternalForce(Game_Manager_Nuevo.singleton.fuerzaVientoGlobal) ;
-                other.GetComponent<PlayerController>().SetExternalForce(vectorViento) ;
+                if(tipoEmpuje == TipoEmpuje.ADITIVA)
+                    other.GetComponent<PlayerController>().AddExternalForce(vectorViento) ;
+                else
+                if(tipoEmpuje == TipoEmpuje.FIJA)
+                    other.GetComponent<PlayerController>().SetExternalForce(vectorViento) ;
+
+                // Recarga la energia
+                JugadorLogica.AumentarEnergia(recarga * Time.deltaTime, TipoEnergia.EOLICA);
             }
         }
 
@@ -32,6 +44,12 @@ namespace Demokratos
             other.GetComponent<PlayerController>().SetExternalForce(new Vector2(0,0)) ;
         }
 
+        public void CargarValores(Vector2 _vectorViento, float _recarga, TipoEmpuje _tipoEmpuje)
+        {
+            vectorViento = _vectorViento;
+            recarga = _recarga;
+            tipoEmpuje = _tipoEmpuje;
+        }
         
     }
 

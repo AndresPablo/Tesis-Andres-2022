@@ -203,6 +203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vectorViento: {x: 0, y: 0}
+  tipoEmpuje: 0
+  recarga: 1
 --- !u!1 &8579117749153036635
 GameObject:
   m_ObjectHideFlags: 0

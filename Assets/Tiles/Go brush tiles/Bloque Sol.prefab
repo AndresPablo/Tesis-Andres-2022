@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7282226188210174685}
-  - component: {fileID: 4800489758928805077}
   - component: {fileID: 3166548793141549642}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Area Sol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,22 +34,6 @@ Transform:
   m_Father: {fileID: 6011483540402922219}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &4800489758928805077
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850513709412770704}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1
 --- !u!114 &3166548793141549642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef4a24e6bbdd64419ca3edd8c040d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  escalaArea: 3
-  incrementoEnergia: 10
+  radioArea: 3
+  incrementoEnergia: 22
 --- !u!1 &2414256451630964724
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4149299562099559047}
   - component: {fileID: 7584811026202582162}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: grafico luz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +74,7 @@ Transform:
   m_GameObject: {fileID: 2414256451630964724}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0810287, y: 1.0810287, z: 1.0810287}
+  m_LocalScale: {x: 0.91859335, y: 0.91859335, z: 0.91859335}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7282226188210174685}
@@ -139,7 +122,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bf0477114ae7f1843b5c5ea52f5f95e4, type: 3}
-  m_Color: {r: 0.9921569, g: 0.74509805, b: 0.06666667, a: 0.20392157}
+  m_Color: {r: 1, g: 0.8123801, b: 0.2971698, a: 0.11764706}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -159,7 +142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 779499940872401560}
   - component: {fileID: 3739870624822890553}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: grafico ciruclo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,4 +368,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.64
+  m_Radius: 0.5

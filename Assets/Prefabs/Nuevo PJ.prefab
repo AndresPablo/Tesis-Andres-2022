@@ -9985,8 +9985,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.75, y: 1.15}
+  m_Offset: {x: 0.06, y: -0.06}
+  m_Size: {x: 0.81, y: 0.95}
   m_Direction: 0
 --- !u!50 &5174167780260644985
 Rigidbody2D:
@@ -10055,9 +10055,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7960c5245fcb0f340a8bd164694e258e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controladorMov: {fileID: 0}
-  visual: {fileID: 896416778}
-  misSonidos: {fileID: 896416780}
   defaultControllerStats: {fileID: 11400000, guid: 87c74ef8565e54942b4802f3082203d2,
     type: 2}
   turboControllerStats: {fileID: 11400000, guid: dda16198272eb8848b89f8f373dc37c9,
@@ -10069,7 +10066,8 @@ MonoBehaviour:
   energiaInicial: 25
   gastoPasivoFosil: 5
   gastoTurbo: 10
-  respawnTime: 2
+  tiempoRespawn: 3
+  SpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &896416778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10088,10 +10086,13 @@ MonoBehaviour:
   pieDer: {fileID: 6366552192983229725}
   ojosOFF: {fileID: 21300000, guid: a9364b2717079be43a1a12ec43e78314, type: 3}
   ojosON: {fileID: 21300000, guid: fd3c0153e3b9428499a4fd70e8512316, type: 3}
+  contenedorEfectos: {fileID: 5724938307142204766}
   rastro_velocidad: {fileID: 5271590422096715405}
   particulas_burbujas: {fileID: 6433034422955743196}
   particulas_lava: {fileID: 7309087045541422492}
   particulas_humo: {fileID: 5826265954628762532}
+  VFXMuerte_prefab: {fileID: 4029460643903678134, guid: 8ed670515362d4745891e5b3b6a68a6e,
+    type: 3}
 --- !u!114 &896416780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10307,7 +10308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5817183823804786198}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.02, y: 0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10566,7 +10567,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -10882,7 +10883,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 12
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 1
@@ -11324,18 +11325,18 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
+          inSlope: -1
+          outSlope: -1
+          tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: -2
-          outSlope: -2
-          tangentMode: 0
+          inSlope: -1
+          outSlope: -1
+          tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0
@@ -11654,15 +11655,15 @@ ParticleSystem:
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
         ctime1: 36623
-        ctime2: 65535
+        ctime2: 55127
         ctime3: 0
         ctime4: 0
         ctime5: 0
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 65535
-        atime2: 0
+        atime1: 58982
+        atime2: 64957
         atime3: 0
         atime4: 0
         atime5: 0
@@ -11670,7 +11671,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 3
-        m_NumAlphaKeys: 2
+        m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TarodevController;
+using Unity.Mathematics;
 using UnityEngine;
+using Viejo;
 
 namespace Demokratos{
 public class JugadorVisual : MonoBehaviour
@@ -13,18 +16,44 @@ public class JugadorVisual : MonoBehaviour
     [SerializeField] Sprite ojosOFF;
     [SerializeField] Sprite ojosON;
     [Space]
+    [SerializeField] Transform contenedorEfectos;
     [SerializeField] TrailRenderer rastro_velocidad;
     [SerializeField] ParticleSystem particulas_burbujas;
     [SerializeField] ParticleSystem particulas_lava;
     [SerializeField] ParticleSystem particulas_humo;
+    [Space]
+    [SerializeField] GameObject VFXMuerte_prefab;
     UI_RefeColores paletaColores;
+    JugadorLogica logica;
+    IPlayerController controlMov;
+    Animator _anim;
+    private bool _grounded;
+
 
     private void Start() {
         paletaColores = Game_Manager_Nuevo.singleton.Interfaz.paletaColores;
+        logica = Game_Manager_Nuevo.singleton.Jugador;
+        controlMov = GetComponent<IPlayerController>();
     }
 
     private void OnEnable() {
-        
+        JugadorLogica.Ev_Muere += Esconder;
+        JugadorLogica.Ev_Muere += EmitirParticulas_Muerte;
+        JugadorLogica.Ev_Spawnea += Mostrar;
+        controlMov.Jumped += OnJumped;
+        controlMov.GroundedChanged += OnGroundedChanged;
+    }
+
+    void Esconder()
+    {
+        cabeza.gameObject.SetActive(false);
+        contenedorEfectos.gameObject.SetActive(false);
+    }
+
+    void Mostrar()
+    {
+        cabeza.gameObject.SetActive(true);
+        contenedorEfectos.gameObject.SetActive(true);
     }
 
     public void SetEmisionRastro(bool estado)
@@ -45,7 +74,8 @@ public class JugadorVisual : MonoBehaviour
         particulas_humo.gameObject.SetActive(false);
         particulas_burbujas.gameObject.SetActive(false);
         particulas_lava.gameObject.SetActive(false);
-        SetEmisionRastro(false);
+        if(Game_Manager_Nuevo.singleton.Jugador.turboMode == false)
+            SetEmisionRastro(false);
         // luego encendemos los correspondientes
         switch(tipo)
         {
@@ -80,17 +110,65 @@ public class JugadorVisual : MonoBehaviour
         Vector2 newScale = transform.localScale;
         if(derecha)
         {
-            newScale.x = Mathf.Abs(transform.localScale.x);
+            transform.rotation = Quaternion.Euler(0,180, 0);
         }else
         {
-            newScale.x = -Mathf.Abs(transform.localScale.x);
+            transform.rotation = Quaternion.Euler(0,0, 0);
         }
-        transform.localScale = newScale;
+    }
+
+    public void HandleSpriteFlip(float x)
+    {/*
+        bool derecha = x < 0;
+        if (derecha)
+        {
+            float rotacionX = cabeza.transform.rotation.x;
+            cabeza.transform
+            cabeza.transform.rotation = new Quaternion.Euler( new Vector3(-rotacionX,0,0));  
+        } */
+    }
+
+    private void OnGroundedChanged(bool grounded, float impact)
+    {
+        _grounded = grounded;
+        
+        if (grounded)
+        {
+            //_anim.SetTrigger(GroundedKey);
+            //_source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
+            //_moveParticles.Play();
+
+            //_landParticles.transform.localScale = Vector3.one * Mathf.InverseLerp(0, 40, impact);
+            //_landParticles.Play();
+        }
+        else
+        {
+            //_moveParticles.Stop();
+        }
+    }
+
+    private void OnJumped()
+    {
+        //_anim.SetTrigger(JumpKey);
+        //_anim.ResetTrigger(GroundedKey);
+
+
+        if (_grounded) // Avoid coyote
+        {
+            EmitirParticulas_Chispas();
+        }
     }
 
     public void EmitirParticulas_Chispas()
     {
         particulas_lava.Emit(20);
+    }
+
+    public void EmitirParticulas_Muerte()
+    {
+        ParticleSystem p = Instantiate(VFXMuerte_prefab, transform.position, Quaternion.identity)
+            .GetComponent<ParticleSystem>();
+        //p.main.startColor.color = paletaColores.GetColorEnergia(Game_Manager_Nuevo.singleton.Jugador.tipoEnergia);
     }
 }
 }

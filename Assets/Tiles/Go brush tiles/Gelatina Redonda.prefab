@@ -103,11 +103,7 @@ MonoBehaviour:
   solido: 1
   peligroso: 0
   victoria: 0
-  poderRebote: 1.306
-  colorNormal: {r: 1, g: 0.95283014, b: 0.41037738, a: 1}
-  colorVictoria: {r: 0.37824848, g: 0.8405593, b: 0.9433962, a: 1}
-  colorPeligro: {r: 1, g: 0.0141509175, b: 0.0141509175, a: 1}
-  colorRebote: {r: 1, g: 0, b: 1, a: 1}
+  poderRebote: 5
 --- !u!50 &6076745627368828473
 Rigidbody2D:
   serializedVersion: 4

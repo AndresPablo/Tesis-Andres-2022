@@ -71,7 +71,7 @@ public class Jugador : MonoBehaviour
     {
         Estado = PlayerState.IDLE;
         graficos.SetActive(true);
-         col.enabled = true;
+        col.enabled = true;
         charControl.enabled = true;
         anim.SetBool("isDead", false);
         rb.velocity = Vector2.zero;

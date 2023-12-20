@@ -3,11 +3,15 @@ using UnityEngine;
 
 namespace Demokratos.Energia{
     
+    public enum TipoEmpuje { ADITIVA, FIJA };
+
     public class BloqueEolico : BloqueBase
     {
         [SerializeField] AreaViento vientoPrefab;
         [SerializeField] Direccion direccion;
-        public float fuerza = 5;
+        [SerializeField] TipoEmpuje tipoEmpuje;
+        [SerializeField] float fuerza = 5;
+        [SerializeField] float recarga = 5;
         AreaViento areaViento;
         VentiladorVisual ventiladorVisual;
 
@@ -29,37 +33,26 @@ namespace Demokratos.Energia{
             switch (_nuevaDireccion)
             {
                 case Direccion.IZQUIERDA:
-                    vectorViento.x = -fuerza;
+                    vectorViento.x = fuerza;
                     vectorViento.y = 0; 
-                    //areaViento.transform.position = anclaIzq.position;
-                    //areaViento.transform.SetParent(anclaIzq);
-                    //areaViento.transform.rotation = anclaIzq.rotation;
                     areaViento.transform.Rotate( new Vector3(0,0,90), Space.Self);
                 break;
                 case Direccion.DERECHA:
                     vectorViento.x = fuerza;
                     vectorViento.y = 0;
-                    //areaViento.transform.position = anclaDer.position;
-                    //areaViento.transform.SetParent(anclaDer);
-                    //areaViento.transform.rotation = anclaDer.rotation;
                     areaViento.transform.Rotate( new Vector3(0,0, -90), Space.Self);
                 break;
                 case Direccion.ABAJO:
                     vectorViento.x = 0;
                     vectorViento.y = fuerza;
-                    //areaViento.transform.position = anclaAbajo.position;
-                    //areaViento.transform.SetParent(anclaAbajo);
-                    //areaViento.transform.rotation = anclaAbajo.rotation;
                     areaViento.transform.Rotate( new Vector3(0,0, -180), Space.Self);
                 break;
                 case Direccion.ARRIBA:
                     vectorViento.x = 0;
-                    vectorViento.y = +fuerza;
-                    //areaViento.transform.position = anclaArriba.position;
-                    //areaViento.transform.SetParent(anclaArriba);
+                    vectorViento.y = fuerza;
                 break;
             }
-            areaViento.vectorViento = vectorViento;
+            areaViento.CargarValores(vectorViento, recarga, tipoEmpuje);
         }
 
         public void CambiarFuerzaViento(float _fuerzaNueva)

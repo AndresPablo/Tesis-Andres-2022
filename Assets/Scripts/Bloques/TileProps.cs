@@ -8,7 +8,7 @@ public class TileProps : MonoBehaviour
     public bool solido = true;
     public bool peligroso;
     public bool victoria;
-    [Range(0,3f)]public float poderRebote = 1f;
+    [Range(0,6f)]public float poderRebote = 1f;
     UI_RefeColores paletaColores;
     Collider2D mCol;
     SpriteRenderer mRenderer;
@@ -79,7 +79,7 @@ public class TileProps : MonoBehaviour
         {
             if (peligroso)
             {
-                //TODO: obsoleta GameManager.singleton.player.Matar();
+                Game_Manager_Nuevo.singleton.Jugador.Matar();
                 return;
             }
 

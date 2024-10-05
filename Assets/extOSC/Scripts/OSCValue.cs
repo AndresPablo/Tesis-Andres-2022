@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2022 dr. ext (Vladimir Sigalkin) */
+﻿/* Copyright (c) 2020 ExT (V.Sigalkin) */
 
 using UnityEngine;
 
@@ -310,7 +310,10 @@ namespace extOSC
 			ArrayValue.Add(arrayValue);
 		}
 
-		public OSCValue Copy() => new OSCValue(Type, Value);
+		public OSCValue Copy()
+		{
+			return new OSCValue(Type, Value);
+		}
 
 		public override string ToString()
 		{

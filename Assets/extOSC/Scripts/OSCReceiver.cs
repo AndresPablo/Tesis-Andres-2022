@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2022 dr. ext (Vladimir Sigalkin) */
+﻿/* Copyright (c) 2020 ExT (V.Sigalkin) */
 
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,23 +6,16 @@ using UnityEngine.Serialization;
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 using extOSC.Core;
 using extOSC.Core.Network;
+
 
 namespace extOSC
 {
 	[AddComponentMenu("extOSC/OSC Receiver")]
 	public class OSCReceiver : OSCBase
 	{
-		#region Static Private Vars
-
-		// Max packets processing time in ms.
-		private const long kMaxProcessingTime = 20;
-
-		#endregion
-		
 		#region Public Vars
 
 		public override bool IsStarted => _receiverBackend.IsAvailable;
@@ -47,7 +40,7 @@ namespace extOSC
 
 		public string LocalHost
 		{
-			get => GetLocalHost();
+			get => RequestLocalHost();
 			set
 			{
 				if (_localHost == value)
@@ -83,8 +76,6 @@ namespace extOSC
 			}
 		}
 
-		public bool IsDrown => _isDrown;
-		
 		#endregion
 
 		#region Private Vars
@@ -129,17 +120,11 @@ namespace extOSC
 
 		private readonly Stack<IOSCBindBundle> _bundleUnbindStack = new Stack<IOSCBindBundle>();
 
-		private readonly Stopwatch _packetsStopwatch = new Stopwatch();
-
 		private readonly object _lock = new object();
 
 		private OSCReceiverBackend __receiverBackend;
 
-		private int _previousPacketsCount;
-
 		private bool _processMessage;
-
-		private bool _isDrown;
 
 		#endregion
 
@@ -151,9 +136,6 @@ namespace extOSC
 
 			lock (_lock)
 			{
-				_packetsStopwatch.Reset();
-				_packetsStopwatch.Start();
-
 				while (_packets.Count > 0)
 				{
 					var packet = _packets.Dequeue();
@@ -164,23 +146,6 @@ namespace extOSC
 					OSCConsole.Received(this, packet);
 
 					InvokePacket(packet);
-
-#if !EXTOSC_DISABLE_DROWN
-					if (_packetsStopwatch.ElapsedMilliseconds > kMaxProcessingTime)
-					{
-						var packetsCount = _packets.Count;
-
-						_isDrown = _previousPacketsCount != 0 && _previousPacketsCount > packetsCount;
-						_previousPacketsCount = packetsCount;
-
-						break;
-					}
-					else
-					{
-						_isDrown = false;
-						_previousPacketsCount = 0;
-					}
-#endif
 				}
 			}
 		}
@@ -207,12 +172,12 @@ namespace extOSC
 
 		public override string ToString()
 		{
-			return $"<{nameof(OSCReceiver)} (LocalHost: {_localHost} LocalPort: {_localPort})>";
+			return $"<{GetType().Name} (LocalHost: {_localHost} LocalPort: {_localPort})>";
 		}
 
 		public override void Connect()
 		{
-			_receiverBackend.Connect(GetLocalHost(), _localPort);
+			_receiverBackend.Connect(RequestLocalHost(), _localPort);
 		}
 
 		public override void Close()
@@ -228,7 +193,7 @@ namespace extOSC
 				throw new NullReferenceException(nameof(bind));
 
 			if (string.IsNullOrEmpty(bind.ReceiverAddress))
-				throw new Exception("[OSCReceiver] Address can not be empty!");
+				throw new Exception("[OSCReceiver]  Address can not be empty!");
 			
 			if (_processMessage)
 			{
@@ -260,7 +225,8 @@ namespace extOSC
 				return;
 			}
 
-			_messageBindings.Remove(bind);
+			if (_messageBindings.Contains(bind))
+				_messageBindings.Remove(bind);
 		}
 
 		// IOSCBindBundle
@@ -313,6 +279,12 @@ namespace extOSC
 		{
 			_messageBindings.Clear();
 			_bundleBindings.Clear();
+		}
+
+		[Obsolete("Use ClearBinds() method.")]
+		public void UnbindAll()
+		{
+			ClearBinds();
 		}
 
 		#endregion
@@ -398,7 +370,8 @@ namespace extOSC
 			}
 		}
 
-		private string GetLocalHost()
+
+		private string RequestLocalHost()
 		{
 			return _localHostMode == OSCLocalHostMode.Any ? "0.0.0.0" : _localHost;
 		}

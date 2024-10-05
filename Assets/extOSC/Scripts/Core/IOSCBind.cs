@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2022 dr. ext (Vladimir Sigalkin) */
+﻿/* Copyright (c) 2020 ExT (V.Sigalkin) */
 
 using extOSC.Core.Events;
 

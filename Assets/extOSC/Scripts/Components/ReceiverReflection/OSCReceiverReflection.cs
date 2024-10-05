@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2022 dr. ext (Vladimir Sigalkin) */
+﻿/* Copyright (c) 2020 ExT (V.Sigalkin) */
 
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -67,8 +67,12 @@ namespace extOSC.Components.ReceiverReflections
 
 		public void RemoveMember(OSCReflectionMember member)
 		{
-			if (_reflectionMembers.Remove(member))
-				UpdateCachedReferences();
+			if (!_reflectionMembers.Contains(member))
+				return;
+
+			_reflectionMembers.Remove(member);
+
+			UpdateCachedReferences();
 		}
 
 		public void UpdateMembers()

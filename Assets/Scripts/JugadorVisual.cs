@@ -32,16 +32,16 @@ public class JugadorVisual : MonoBehaviour
 
     private void Start() {
         paletaColores = Game_Manager_Nuevo.singleton.Interfaz.paletaColores;
-        logica = Game_Manager_Nuevo.singleton.Jugador;
+        logica = GetComponent<JugadorLogica>();
         controlMov = GetComponent<IPlayerController>();
+        controlMov.Jumped += OnJumped;
+        controlMov.GroundedChanged += OnGroundedChanged;
     }
 
     private void OnEnable() {
         JugadorLogica.Ev_Muere += Esconder;
         JugadorLogica.Ev_Muere += EmitirParticulas_Muerte;
         JugadorLogica.Ev_Spawnea += Mostrar;
-        controlMov.Jumped += OnJumped;
-        controlMov.GroundedChanged += OnGroundedChanged;
     }
 
     void Esconder()
@@ -68,6 +68,7 @@ public class JugadorVisual : MonoBehaviour
 
     public void UpdateColorEnergia(TipoEnergia tipo)
     {
+        if(!paletaColores) paletaColores = Game_Manager_Nuevo.singleton.Interfaz.paletaColores;
         SetColorRastro(tipo);
         PintarPJ(paletaColores.GetColorEnergia(tipo));
         // apagar todos los efectos

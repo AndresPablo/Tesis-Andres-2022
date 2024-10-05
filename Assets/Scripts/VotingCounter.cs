@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Demokratos;
 using UnityEngine;
+using OSC.NET;
 
 namespace SistemaVotacion{
 public class VotingCounter : MonoBehaviour
@@ -22,18 +24,46 @@ public class VotingCounter : MonoBehaviour
         
     }
 
+    public void OSCMessageReceived(OSC.NET.OSCMessage message){
+		string address = message.Address;
+		ArrayList args = message.Values;
+        Debug.Log(args);
+        // TODO emprolijar lectura de paquetes
+    }
+
     public void SetActasParaEleccion(Acta[] actas)
     {
         ActasEnEleccion.Clear();
         foreach(Acta a in actas)
         {
             ActasEnEleccion.Add(a);
+            a.votos = 0;
         }
     }
 
     public void CambiarVotos(int _actaIndice, int _cantidad = 1)
     {
-        ActasEnEleccion[_actaIndice].votos += _cantidad;
+        // Si no hay actas tiraria error
+        if(ActasEnEleccion.Count == 0){
+            Debug.LogWarning("ERROR: no hay actas que votar en este momento");
+            return;
+        }
+        
+        ActasEnEleccion[_actaIndice].votos = _cantidad;
+        if(Ev_CambiarVotos != null)
+            Ev_CambiarVotos.Invoke(ActasEnEleccion.ToArray());
+        if(Ev_NuevoVoto != null)
+            Ev_NuevoVoto.Invoke(_actaIndice, _cantidad);
+    }
+
+    public void SumarVotos(int _actaIndice, int _cantidad = 0)
+    {
+        // Si no hay actas tiraria error
+        if(ActasEnEleccion.Count == 0){
+            Debug.LogAssertion("ERROR: no hay actas que votar en este momento");
+            return;
+        }
+                ActasEnEleccion[_actaIndice].votos += _cantidad;
         if(Ev_CambiarVotos != null)
             Ev_CambiarVotos.Invoke(ActasEnEleccion.ToArray());
         if(Ev_NuevoVoto != null)
@@ -71,11 +101,11 @@ public class VotingCounter : MonoBehaviour
         // Suma votos con el teclado numerico (A=1, B=2)
         if(Input.GetKeyDown(KeyCode.Keypad1))
         {
-            CambiarVotos(0);
+            SumarVotos(0, 1);
         }else
         if(Input.GetKeyDown(KeyCode.Keypad2))
         {
-            CambiarVotos(1);
+            SumarVotos(1, 1);
         }
         // Resetea todos los votos
 
@@ -84,6 +114,16 @@ public class VotingCounter : MonoBehaviour
         {
             VotingLogic.singleton.ToogleVotacion();
         }
+    }
+
+    public void Debug_VotarA()
+    {
+        SumarVotos(0, 1);
+    }
+
+    public void Debug_VotarB()
+    {
+        SumarVotos(0, 1);
     }
 }
 

@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2022 dr. ext (Vladimir Sigalkin) */
+﻿/* Copyright (c) 2020 ExT (V.Sigalkin) */
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -253,7 +253,8 @@ namespace extOSC.UI
 
 		public void RemoveSlider(OSCSlider slider)
 		{
-			_sliders.Remove(slider);
+			if (_sliders.Contains(slider))
+				_sliders.Remove(slider);
 		}
 
 		#endregion

@@ -17,6 +17,11 @@ public class UnityOSCReceiver : MonoBehaviour {
 	
 	public UnityOSCReceiver() {}
 
+	#region EVENTOS
+        public delegate void DelegadoMensajeOSC(OSC.NET.OSCMessage message);
+        public static event DelegadoMensajeOSC Ev_MensajeOSCRecibido;
+    #endregion
+
 	public int getPort() {
 		return port;
 	}
@@ -49,6 +54,8 @@ public class UnityOSCReceiver : MonoBehaviour {
 		lock(processQueue){
 			foreach( OSCMessage message in processQueue){
 				BroadcastMessage("OSCMessageReceived", message, SendMessageOptions.DontRequireReceiver);
+				        if(Ev_MensajeOSCRecibido != null)
+            				Ev_MensajeOSCRecibido.Invoke(message);
 			}
 			processQueue.Clear();
 		}

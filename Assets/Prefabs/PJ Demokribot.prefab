@@ -9949,7 +9949,7 @@ GameObject:
   - component: {fileID: 896416778}
   - component: {fileID: 896416780}
   m_Layer: 3
-  m_Name: Nuevo PJ
+  m_Name: PJ Demokribot
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

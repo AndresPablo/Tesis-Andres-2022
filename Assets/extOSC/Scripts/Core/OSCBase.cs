@@ -1,6 +1,4 @@
-﻿/* Copyright (c) 2022 dr. ext (Vladimir Sigalkin) */
-
-using System;
+﻿/* Copyright (c) 2020 ExT (V.Sigalkin) */
 
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -27,6 +25,12 @@ namespace extOSC.Core
 			set => _mapBundle = value;
 		}
 
+        public bool WorkInEditor
+        {
+            get => _workInEditor;
+			set => _workInEditor = value;
+		}
+
         public bool CloseOnPause
         {
             get => _closeOnPause;
@@ -34,13 +38,6 @@ namespace extOSC.Core
 		}
 
         public abstract bool IsStarted { get; }
-
-        [Obsolete]
-        public bool WorkInEditor
-        {
-	        get => _workInEditor;
-	        set => _workInEditor = value;
-        }
 
         #endregion
 

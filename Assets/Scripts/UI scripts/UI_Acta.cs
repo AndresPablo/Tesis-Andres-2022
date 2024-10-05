@@ -27,6 +27,7 @@ namespace SistemaVotacion {
         {
             titulo_label.text = acta.votos + "";
             frase_label.text = acta.name;
+            adjetivo_label.text = "";
             if(acta.sprite_A)
                 imagen_A.sprite = imagen_B.sprite = acta.sprite_A;
             // TODO: refactorizar

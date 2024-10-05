@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radioArea: 3
-  incrementoEnergia: 22
+  incrementoEnergia: 36.4
 --- !u!1 &2414256451630964724
 GameObject:
   m_ObjectHideFlags: 0

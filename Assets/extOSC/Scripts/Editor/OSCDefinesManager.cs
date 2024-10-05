@@ -1,9 +1,8 @@
-﻿/* Copyright (c) 2022 dr. ext (Vladimir Sigalkin) */
+﻿/* Copyright (c) 2020 ExT (V.Sigalkin) */
 
 using UnityEditor;
 
 using System;
-using System.Linq;
 
 namespace extOSC.Editor
 {
@@ -30,29 +29,22 @@ namespace extOSC.Editor
 
 		public static void SetDefine(string define, bool active)
 		{
-			// Get all defines groups.
 			var buildTargets = (BuildTargetGroup[]) Enum.GetValues(typeof(BuildTargetGroup));
 			foreach (var targetGroup in buildTargets)
 			{
 				if (!CheckBuildTarget(targetGroup)) continue;
 
-				// Get all defines.
-				var definesString = PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup);
-				var defines = definesString.Split(';').ToList();
-
-				// Setup defines.
-				if (active)
+				var scriptingDefines = PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup);
+				if (!scriptingDefines.Contains(define) && active)
 				{
-					if (!defines.Contains(define))
-						defines.Add(define);
+					scriptingDefines += ";" + define;
 				}
-				else
+				else if (!active)
 				{
-					defines.Remove(define);
+					scriptingDefines = scriptingDefines.Replace(define, string.Empty);
 				}
 
-				// Store new defines.
-				PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, string.Join(";", defines));
+				PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, scriptingDefines);
 			}
 		}
 
@@ -60,12 +52,9 @@ namespace extOSC.Editor
 		{
 			// Get current define group.
 			var currentBuildTarget = EditorUserBuildSettings.selectedBuildTargetGroup;
-			
-			var definesString = PlayerSettings.GetScriptingDefineSymbolsForGroup(currentBuildTarget);
-			var defines = definesString.Split(';');
 
-			// Check contain defines.
-			return defines.Contains(define);
+			// Check.
+			return PlayerSettings.GetScriptingDefineSymbolsForGroup(currentBuildTarget).Contains(define);
 		}
 
 		#endregion
@@ -74,7 +63,7 @@ namespace extOSC.Editor
 
 		private static bool CheckBuildTarget(BuildTargetGroup buildTarget)
 		{
-			// Not available in Unknown.
+			// Not available id Unknown.
 			if (buildTarget == BuildTargetGroup.Unknown)
 				return false;
 

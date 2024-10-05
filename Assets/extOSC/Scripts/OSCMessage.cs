@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2022 dr. ext (Vladimir Sigalkin) */
+﻿/* Copyright (c) 2020 ExT (V.Sigalkin) */
 
 using System;
 using System.Net;
@@ -108,6 +108,13 @@ namespace extOSC
 			}
 
 			return $"<{GetType().Name}:\"{Address}\"> : {(string.IsNullOrEmpty(stringValues) ? "null" : stringValues)}";
+		}
+
+		// OBSOLETE
+		[Obsolete("Use FindValues method.")]
+		public OSCValue[] GetValues(params OSCValueType[] types)
+		{
+			return FindValues(types);
 		}
 
 		#endregion

@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 7543245899018482769}
   - component: {fileID: 7543245899018482782}
   - component: {fileID: -3954086358228308959}
+  - component: {fileID: -4711544610439809763}
   m_Layer: 0
   m_Name: Plantilla Nivel
   m_TagString: Untagged
@@ -495,6 +496,19 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
+--- !u!114 &-4711544610439809763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543245899018482780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc4e81a53971d1c40b0a25d01408faf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  congelarCamara: 0
 --- !u!1001 &7543245898951526060
 PrefabInstance:
   m_ObjectHideFlags: 0

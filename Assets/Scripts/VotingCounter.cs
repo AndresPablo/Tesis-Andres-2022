@@ -60,7 +60,7 @@ public class VotingCounter : MonoBehaviour
     {
         // Si no hay actas tiraria error
         if(ActasEnEleccion.Count == 0){
-            Debug.LogAssertion("ERROR: no hay actas que votar en este momento");
+            Debug.LogWarning("ERROR: no hay actas que votar en este momento");
             return;
         }
                 ActasEnEleccion[_actaIndice].votos += _cantidad;
@@ -69,6 +69,7 @@ public class VotingCounter : MonoBehaviour
         if(Ev_NuevoVoto != null)
             Ev_NuevoVoto.Invoke(_actaIndice, _cantidad);
     }
+
 
     void Update()
     {
@@ -96,6 +97,7 @@ public class VotingCounter : MonoBehaviour
         return _ganadora;
     }
 
+    #region DEBUG
     void DebugInput()
     {
         // Suma votos con el teclado numerico (A=1, B=2)
@@ -123,8 +125,9 @@ public class VotingCounter : MonoBehaviour
 
     public void Debug_VotarB()
     {
-        SumarVotos(0, 1);
+        SumarVotos(1, 1);
     }
+    #endregion DEBUG
 }
 
 [System.Serializable]

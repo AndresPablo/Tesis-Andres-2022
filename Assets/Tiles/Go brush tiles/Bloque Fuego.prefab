@@ -242,7 +242,7 @@ MonoBehaviour:
   recarga: 5
   tiempoEntreFuegos: 2
   duracionFuego: 1
-  SFX_arde: {fileID: 8300000, guid: 4944d70384075be4d9eb35358d5436fb, type: 3}
+  SFX_arde: {fileID: 0}
   areasFuego:
   - {fileID: 5393874515597096021}
   particulas: {fileID: 6404066692604725032}

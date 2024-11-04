@@ -13,8 +13,11 @@ namespace SistemaVotacion {
         [SerializeField] TextMeshProUGUI titulo_label;
         [SerializeField] TextMeshProUGUI frase_label;
         [SerializeField] TextMeshProUGUI adjetivo_label;
-        [SerializeField] Image imagen_A;
-        [SerializeField] Image imagen_B;
+        [SerializeField] Image image_panel;
+        [SerializeField] Image fondo_caja_icono;
+        [SerializeField] Image icono;
+        [SerializeField] UI_RefeColores paleta_colores;
+        public Color mi_color;
 
         void Start()
         {
@@ -23,13 +26,41 @@ namespace SistemaVotacion {
             ApagarVisuales();
         }
 
-        public void CargarInfo(SistemaVotacion.Acta acta)
+        public void CargarInfo(Acta acta)
         {
-            titulo_label.text = acta.votos + "";
-            frase_label.text = acta.name;
-            adjetivo_label.text = "";
+            //if(titulo_label) titulo_label.text = acta.votos + "";
+            if(frase_label) frase_label.text = acta.name;
+            //if(adjetivo_label) adjetivo_label.text = "";
             if(acta.sprite_A)
-                imagen_A.sprite = imagen_B.sprite = acta.sprite_A;
+                icono.sprite = acta.sprite_A;
+
+
+            switch (acta.efecto)
+            {
+                case (TipoEfecto.FOSIL):
+                    mi_color = paleta_colores.colorFosil;
+                    break;
+                case (TipoEfecto.EOLICO):
+                    mi_color = paleta_colores.colorEolica;
+                    break;
+                case (TipoEfecto.SOLAR):
+                    mi_color = paleta_colores.colorSolar;
+                    break;
+                case (TipoEfecto.HIDRO):
+                    mi_color = paleta_colores.colorHidro;
+                    break;
+                case (TipoEfecto.TERMICO):
+                    mi_color = paleta_colores.colorTermica;
+                    break;
+                default:
+                    mi_color = paleta_colores.colorNeutro;
+                    break;
+            }
+
+            image_panel.color = mi_color;
+            fondo_caja_icono.color = mi_color;
+            //imagen_B.color = mi_color;
+
             // TODO: refactorizar
             /*
             tileA.color = acta.color;

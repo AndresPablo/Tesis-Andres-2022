@@ -73,7 +73,7 @@ public class IntroScreen : MonoBehaviour
     public void Empezar()
     {
         canvas.enabled = false;
-        GameManager.singleton.EmpezarJuego();
+        //GameManager.singleton.EmpezarJuego();
         this.enabled = false;
     }
 

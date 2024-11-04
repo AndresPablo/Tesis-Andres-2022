@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Demokratos;
+using Demokratos.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using Viejo;
@@ -94,9 +95,18 @@ public class VotingLogic : MonoBehaviour
     {
         List<Acta> actas = new List<Acta>();
 
-        // TODO: mejorar para que no haya repetidas
-        actas.Add(GetActaRandom());
-        actas.Add(GetActaRandom());
+        // Selecciona la primera acta aleatoria
+        Acta primeraActa = GetActaRandom();
+        actas.Add(primeraActa);
+
+        // Selecciona una segunda acta que no sea igual a la primera
+        Acta segundaActa;
+        do
+        {
+            segundaActa = GetActaRandom();
+        } while (segundaActa == primeraActa);
+
+        actas.Add(segundaActa);
 
         ScriptContador.SetActasParaEleccion(actas.ToArray());
         visual.MostrarVotosActuales(actas.ToArray());
@@ -155,6 +165,11 @@ public class VotingLogic : MonoBehaviour
             SetearEstado(EstadoVotacion.ESPERA);
             else
             SetearEstado(EstadoVotacion.APAGADO);
+    }
+
+    public void ReinicarVotacion(){
+        tiempoTranscurrido = 0;
+        ToogleVotacion();
     }
 }
 }

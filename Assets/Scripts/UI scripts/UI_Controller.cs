@@ -9,24 +9,19 @@ using Viejo;
 namespace Demokratos.UI{
     public class UI_Controller : MonoBehaviour
     {
+        public CameraFollower seguidorCamara;
         [SerializeField] UI_Debug Debug_pantalla;
         [SerializeField] RectTransform Menu_pantalla;
         [SerializeField] RectTransform Gameplay_pantalla;
         [SerializeField] UI_VotosVisual Votacion_pantalla;
         [SerializeField] RectTransform Victoria_pantalla;
-        [SerializeField] UI_BarraEnergia barraEnergia ;
-        [Space]
-        [SerializeField] Sprite iconoFosil;
-        [SerializeField] Sprite iconoEolica;
-        [SerializeField] Sprite iconoHidro;
-        [SerializeField] Sprite iconoTermica;
-        [SerializeField] Sprite iconoSolar;
-        [Space]
+        [SerializeField] UI_BarraEnergia barraEnergia;
+        [SerializeField] UI_NivelTexto texto_nivel;
+        [SerializeField] UI_TimerVotos timer_votos;
         public UI_RefeColores paletaColores;
 
 
 
-        // Start is called before the first frame update
         void Start()
         {
             Debug_pantalla.Cerrar();
@@ -34,7 +29,6 @@ namespace Demokratos.UI{
 
 
 
-        // Update is called once per frame
         void Update()
         {
             

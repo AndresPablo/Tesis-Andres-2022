@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d505c11874150b04eaf62e144b5553f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cantidadEnergia: 20
+  cantidadEnergia: 1
   pickupParticulas: {fileID: 563692409697157730, guid: 0fbce2942087e1c45b176d50593ed2b5,
     type: 3}
   pickUp_SFX: {fileID: 8300000, guid: 095e0c108d6cf044dbb7d0c607c89a03, type: 3}

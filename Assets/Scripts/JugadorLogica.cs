@@ -23,12 +23,14 @@ namespace Demokratos{
         // Valores energia
         public TipoEnergia tipoEnergia = TipoEnergia.FOSIL;
         public bool turboMode = false;
-        public float energiaMax = 100;
-        public float energiaInicial = 25;
+        public float energiaMax = 8f;
+        public float energiaMaxDisponible = 8f;
+        public float energiaInicial = 1f;
         [Tooltip("Cuando esta en modo fosil, pierde energia constantemente.")]
-        public float gastoPasivoFosil = 5;
+        public float gastoPasivoFosil = .05f;
         [Tooltip("La energia que consume el modo TURBO cada segundo.")]
-        [SerializeField] float gastoTurbo = 10;
+        [SerializeField] float gastoTurbo = 1f;
+        [SerializeField] public float debug_mi_energia;
         public float energiaActual { get; private set; }
 
         [SerializeField] float tiempoRespawn = 3f;
@@ -45,6 +47,7 @@ namespace Demokratos{
             public static event JugadorDelegate Ev_Muere;
             public static event JugadorDelegate Ev_Spawnea;
             public static event EnergiaDelegate Ev_OnEnergiaCambia;
+            public static event EnergiaDelegate Ev_OnEnergiaMaximaCambia;
             public static event TipoEnergiaDelegate Ev_OnTipoEnergiaCambia;
         #endregion
 
@@ -53,7 +56,7 @@ namespace Demokratos{
             {
                 TomarReferencias();
                 StartCoroutine(Check_CaidaAlVacio()); // Si las coordenadas son muy grandes, asume que caiste al vacio y mata al jugador
-                visual.UpdateColorEnergia(tipoEnergia); // se llama al empezar para configurar las visuales del tipo inicial
+                SetearTipoEnergia(tipoEnergia); // Configura el tipo de energia inicial
             }
 
             void TomarReferencias()
@@ -70,7 +73,12 @@ namespace Demokratos{
             // Enlaza eventos
             private void OnEnable() {
                 Game_Manager_Nuevo.Ev_InvertirGravedad += InvertirGravedad;
-                Item_Bateria.Ev_Pickup += AumentarEnergia;
+                Item_Bateria.Ev_BateriaPickup += PickUpBateria;
+            }
+
+            private void OnDisable() {
+                Game_Manager_Nuevo.Ev_InvertirGravedad -= InvertirGravedad;
+                Item_Bateria.Ev_BateriaPickup -= PickUpBateria;
             }
         #endregion
 
@@ -92,6 +100,8 @@ namespace Demokratos{
                 AumentarEnergia(-gastoTurbo * Time.deltaTime);
             }
 
+            debug_mi_energia = energiaActual;
+
             // Ordena la rotacion del sprite
             if(controladorMov.lastHorizontalVector > 0)
                 visual.SetSpriteDirection(false);
@@ -104,7 +114,8 @@ namespace Demokratos{
             {
                 if(estado == EstadoJugador.MUERTO)
                     return;
-                if(Input.GetMouseButtonDown(0)){
+                // Joystick button 0
+                if(Input.GetButtonDown("Turbo")){
                     if(!turboMode && energiaActual > 10)
                     {
                         // activa el turno porque esta vivo y tiene suficiente energia
@@ -144,16 +155,14 @@ namespace Demokratos{
                 energiaActual += _valor;
 
                 if(energiaActual <= 0)
-                {
                     energiaActual = 0;
-                }
-                else
-                {
-                    if(energiaActual >= energiaMax)
-                        energiaActual = energiaMax;  
-                    if(Ev_OnEnergiaCambia != null)
-                        Ev_OnEnergiaCambia(energiaActual);
-                }
+                if(energiaActual >= energiaMax)
+                    energiaActual = energiaMax;  
+                if(energiaActual >= energiaMaxDisponible)
+                    energiaActual = energiaMaxDisponible;  
+
+                if(Ev_OnEnergiaCambia != null)
+                    Ev_OnEnergiaCambia(energiaActual);    
             }
 
             public void AumentarEnergia(float _valor, TipoEnergia _tipo)
@@ -166,8 +175,33 @@ namespace Demokratos{
 
             public void ResetearEnergia()
             {
-                energiaActual = 0;
+                SetEnergiaMaximaDisponible(energiaInicial);              
                 AumentarEnergia(energiaInicial);
+            }
+
+            public void AumentarEnergiaMaximaDisponible(float _cantidad)
+            {
+                energiaMaxDisponible += _cantidad;
+                if(energiaMaxDisponible >= energiaMax)
+                {
+                    energiaMaxDisponible = energiaMax;  
+
+                }
+                if(Ev_OnEnergiaMaximaCambia != null)
+                    Ev_OnEnergiaMaximaCambia(energiaMaxDisponible);
+                if(Ev_OnEnergiaCambia != null)
+                    Ev_OnEnergiaCambia(energiaActual);    
+            }
+
+            public void SetEnergiaMaximaDisponible(float _cantidad)
+            {
+                energiaMaxDisponible = _cantidad;
+                if(energiaMaxDisponible >= energiaMax)
+                    energiaMaxDisponible = energiaMax;  
+                if(Ev_OnEnergiaMaximaCambia != null)
+                    Ev_OnEnergiaMaximaCambia(energiaMaxDisponible);
+                if(Ev_OnEnergiaCambia != null)
+                    Ev_OnEnergiaCambia(energiaActual);    
             }
 
             public void SetearTipoEnergia(TipoEnergia _tipoEnergia)
@@ -181,7 +215,8 @@ namespace Demokratos{
 
         public void PickUpBateria()
         {
-            AumentarEnergia(30);
+            AumentarEnergiaMaximaDisponible(1);
+            AumentarEnergia(0);
         }
 
         #region VIDA / MUERTE
@@ -206,7 +241,6 @@ namespace Demokratos{
             
             public void Spawn(Vector3 _spawnPos)
             {
-                Debug.Log("REVIVE");
                 Teleport(_spawnPos);
                 ToogleControlador(true);
                 AumentarEnergia(0);

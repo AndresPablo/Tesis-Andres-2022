@@ -61,7 +61,7 @@ namespace Demokratos{
                 if(child.GetComponent<Item_Bateria>())
                     cantidadBaterias++;
             }
-            return cantidadBaterias-1;
+            return cantidadBaterias;
         } 
     }
 }

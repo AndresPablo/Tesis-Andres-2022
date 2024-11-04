@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2415625131080025169
 Transform:
   m_ObjectHideFlags: 0
@@ -4912,7 +4912,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1260710212448560286
 Transform:
   m_ObjectHideFlags: 0
@@ -5053,7 +5053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1459550270528346499
 Transform:
   m_ObjectHideFlags: 0
@@ -10060,12 +10060,13 @@ MonoBehaviour:
   turboControllerStats: {fileID: 11400000, guid: dda16198272eb8848b89f8f373dc37c9,
     type: 2}
   estado: 0
-  tipoEnergia: 1
+  tipoEnergia: 0
   turboMode: 0
-  energiaMax: 100
-  energiaInicial: 25
-  gastoPasivoFosil: 5
-  gastoTurbo: 10
+  energiaMax: 8
+  energiaMaxDisponible: 1
+  energiaInicial: 1
+  gastoPasivoFosil: 0.15
+  gastoTurbo: 1
   tiempoRespawn: 3
   SpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &896416778
@@ -10299,7 +10300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2121392389059628654
 Transform:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ namespace Demokratos{
         
         // Referencias
         [SerializeField] JugadorLogica jugador;
-        [SerializeField] LevelManager Niveles;
+        [SerializeField] LevelManager Nivel_Handler;
         public UI_Controller Interfaz;
         public UnityEvent OnEndLevel;
         public UnityEvent OnVictory;
@@ -28,12 +28,14 @@ namespace Demokratos{
         [SerializeField] float tiempoRespawn = 3f;
         [SerializeField] float tiempoEntreNiveles = 2f;
 
+
         public JugadorLogica Jugador { get { return jugador; }}
         public Vector2 JugadorPos { get { return jugador.transform.position; }}
         public int bateriasEnNivel;
         public int bateriasEnNivel_Max;
 
-        #region EVENTOS de GameManager
+
+        #region EVENTOS
             public delegate void VoidDelegate();
             public delegate void BateriasDelegate(int actuales, int totales);
             public delegate void NivelDelegate(int nivel_actual);
@@ -51,8 +53,54 @@ namespace Demokratos{
             EmpezarPartida();
         }
 
+
+
+        void EmpezarPartida()
+        {
+            Nivel_Handler.LoadLevel(0);
+            Jugador.gameObject.SetActive(true);
+            Jugador.SetSpawn(LevelManager.spawnPos);
+            Jugador.Spawn(LevelManager.spawnPos) ;
+            Jugador.ResetearEnergia();
+            Jugador.SetearTipoEnergia(Jugador.tipoEnergia);
+            bateriasEnNivel_Max = Nivel_Handler.GetCantidadBaterias();
+            ChequearPasoNivel();
+        }
+
+        public void EmpezarNuevoNivel()
+        {
+            VotingLogic.singleton.ReinicarVotacion();
+            Nivel_Handler.LoadNextLevel();
+            Jugador.SetSpawn(LevelManager.spawnPos);
+            Jugador.Spawn(LevelManager.spawnPos) ;
+            Jugador.ResetearEnergia();
+            bateriasEnNivel_Max = Nivel_Handler.GetCantidadBaterias();
+        }
+
+        public void NivelCompletado()
+        {
+            VotingLogic.singleton.ToogleVotacion(true);
+            Invoke("EmpezarNuevoNivel", tiempoEntreNiveles);
+        }
+
+        void ChequearPasoNivel()
+        {
+            // tiene -1 porque la bateria no se destruye aun cuando invoca esta funcion a traves del evento
+            bateriasEnNivel = Nivel_Handler.GetCantidadBaterias() - 1;
+            if(Ev_CuentaBaterias != null)
+                Ev_CuentaBaterias(bateriasEnNivel, bateriasEnNivel_Max);
+            if(bateriasEnNivel  <= 0)
+            {
+                NivelCompletado();
+            }
+            //Debug.Log(bateriasEnNivel.ToString() + "/" + bateriasEnNivel_Max.ToString());
+        }
+
+
+        #region VOTACIONES
         void AplicarResultadoVotacion(SistemaVotacion.Acta acta)
         {
+            Jugador.SetearTipoEnergia(TipoEnergia.NINGUNO);
             switch(acta.efecto)
             {
                 case TipoEfecto.EOLICO:
@@ -64,59 +112,39 @@ namespace Demokratos{
                 case TipoEfecto.TERMICO:
                     Jugador.SetearTipoEnergia(TipoEnergia.TERMO);
                     break;
+                case TipoEfecto.FOSIL:
+                    Jugador.SetearTipoEnergia(TipoEnergia.FOSIL);
+                    break;                
+                case TipoEfecto.NO_ENERGIA:
+                    Jugador.SetearTipoEnergia(TipoEnergia.NINGUNO);
+                    break;
+                case TipoEfecto.GRAV:
+                    // TODO:
+                    break;
+                case TipoEfecto.SWAP:
+                    // TODO:
+                    break;
+                default:
+                    // TODO:
+                    break;
             }
         }
 
-        void EmpezarPartida()
-        {
-            Niveles.LoadLevel(0);
-            Jugador.gameObject.SetActive(true);
-            Jugador.SetSpawn(LevelManager.spawnPos);
-            Jugador.Spawn(LevelManager.spawnPos) ;
-            Jugador.ResetearEnergia();
-        }
+        
+        #endregion
 
-        public void EmpezarNuevoNivel()
-        {
-            VotingLogic.singleton.ToogleVotacion();
-            Niveles.LoadNextLevel();
-            Jugador.Spawn(LevelManager.spawnPos) ;
-            Jugador.SetSpawn(LevelManager.spawnPos);
-            Jugador.ResetearEnergia();
-            Jugador.SetearTipoEnergia(TipoEnergia.FOSIL); // TODO: dejar el estado del nivel anterior?
-            bateriasEnNivel_Max = Niveles.GetCantidadBaterias();
-        }
-
-        public void NivelCompletado()
-        {
-            VotingLogic.singleton.ToogleVotacion(true);
-            Invoke("EmpezarNuevoNivel",tiempoEntreNiveles);
-        }
-
-        void Update()
-        {
-            
-        }
-
-        void ChequearPasoNivel()
-        {
-            bateriasEnNivel = Niveles.GetCantidadBaterias();
-            if(Ev_CuentaBaterias != null)
-                Ev_CuentaBaterias(bateriasEnNivel, bateriasEnNivel_Max);
-            if(bateriasEnNivel  <= 0)
-            {
-                NivelCompletado();
-            }
-        }
-
-        public void InvertirGravedad()
-        {
-
-        }
+        #region FUNCIONES UTILITARIAS
 
         public float DistanciaDelJugador(Vector2 origen)
         {
             return Vector2.Distance(origen, JugadorPos);
         }
+        
+        public void InvertirGravedad()
+        {
+            // TODO
+        }
+
+        #endregion
     }
 }

@@ -18,12 +18,15 @@ public class Teletransportador : MonoBehaviour
 
     void HacerCosas(){
         if(destino){
-            Game_Manager_Nuevo.singleton.Jugador.transform.position = destino.position;
+            Game_Manager_Nuevo.singleton.Jugador.Teleport(destino.position);
+            Game_Manager_Nuevo.singleton.Interfaz.seguidorCamara.MoverHastaJugador();
         }
 
         if(congelarCamara){
+//            Game_Manager_Nuevo.singleton.Interfaz.seguidorCamara.SeguirObjetivo(destino);
             Game_Manager_Nuevo.singleton.Interfaz.seguidorCamara.Quieta();
             Game_Manager_Nuevo.singleton.Interfaz.seguidorCamara.MoverHastaJugador();
+
         }
         else
         {

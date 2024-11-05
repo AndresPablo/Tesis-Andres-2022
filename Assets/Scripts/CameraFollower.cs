@@ -42,14 +42,25 @@ public class CameraFollower : MonoBehaviour
         camaraVirtual.Follow = Game_Manager_Nuevo.singleton.Jugador.transform;
     }
 
+    public void SeguirObjetivo(Transform target)
+    {
+        camaraVirtual.Follow = target;
+    }
+
     public void Quieta()
     {
         camaraVirtual.Follow = null;
     }
 
     public void MoverHastaJugador(){
-        camaraVirtual.Follow = Game_Manager_Nuevo.singleton.Jugador.transform;
-        camaraVirtual.Follow = null;
+        Vector3 jugadorPos = Game_Manager_Nuevo.singleton.Jugador.transform.position;
+        Vector3 newPos = new Vector3(jugadorPos.x, jugadorPos.y, transform.position.z);
+        camaraVirtual.transform.position = newPos;
+    }
+
+    public void MoverATarget(Transform target){
+        Vector3 newPos = new Vector3(target.position.x, target.position.y, transform.position.z);
+        camaraVirtual.transform.position = newPos;
     }
 }
 }

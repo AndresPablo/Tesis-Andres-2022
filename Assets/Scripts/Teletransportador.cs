@@ -8,6 +8,7 @@ public class Teletransportador : MonoBehaviour
     public bool activarVotos;
     public bool activarEnergia;
     public Transform destino;
+    public Transform nuevo_spawner;
 
 
     void OnTriggerEnter2D(Collider2D otro){
@@ -39,6 +40,10 @@ public class Teletransportador : MonoBehaviour
 
         if(activarEnergia){
 
+        }
+
+        if(nuevo_spawner){
+            Game_Manager_Nuevo.singleton.Jugador.SetSpawn(nuevo_spawner.transform.position);
         }
     }
 }

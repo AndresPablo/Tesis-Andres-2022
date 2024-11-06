@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorSolido: {r: 1, g: 1, b: 1, a: 1}
   colorFantasma: {r: 0.5, g: 0.5, b: 0.5, a: 0.78431374}
-  colorGrisApagado: {r: 0.3647059, g: 0.3647059, b: 0.3647059, a: 1}
   color_Gelatina: {r: 0.80239296, g: 0.21226418, b: 1, a: 1}
   color_letal: {r: 1, g: 0, b: 0, a: 1}
   color_victoria: {r: 0, g: 1, b: 1, a: 1}
@@ -25,8 +24,9 @@ MonoBehaviour:
   colorTermica: {r: 0.9245283, g: 0.33411533, b: 0.07413671, a: 1}
   colorHidro: {r: 0.39684942, g: 0.42518577, b: 0.9245283, a: 1}
   colorSolar: {r: 1, g: 0.8835671, b: 0.4481132, a: 1}
+  colorGrisApagado: {r: 0.3647059, g: 0.3647059, b: 0.3647059, a: 1}
   icono_default: {fileID: 21300000, guid: 8b776fdcb60c4d54387f223dc4d9afc0, type: 3}
-  iconoFosil: {fileID: 21300000, guid: 0a9ec50c4d0185e4d90c5bebab73243f, type: 3}
+  iconoFosil: {fileID: 21300000, guid: c344557ee800aa54e90b7e4b4ffdf094, type: 3}
   iconoEolica: {fileID: 21300000, guid: fa2660c5b6ed4784885155c5717665bc, type: 3}
   iconoHidro: {fileID: 21300000, guid: 9caa1857dff82ba4bb64e23693a2e19f, type: 3}
   iconoTermica: {fileID: 21300000, guid: f0036530fc8c6c54cbd1e2b0d3e26c19, type: 3}

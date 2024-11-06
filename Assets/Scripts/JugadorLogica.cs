@@ -74,11 +74,13 @@ namespace Demokratos{
             private void OnEnable() {
                 Game_Manager_Nuevo.Ev_InvertirGravedad += InvertirGravedad;
                 Item_Bateria.Ev_BateriaPickup += PickUpBateria;
+                Item_Bateria.Ev_BateriaPickup += Bidon_Nafta_recogido;
             }
 
             private void OnDisable() {
                 Game_Manager_Nuevo.Ev_InvertirGravedad -= InvertirGravedad;
                 Item_Bateria.Ev_BateriaPickup -= PickUpBateria;
+                Item_Bateria.Ev_BateriaPickup -= Bidon_Nafta_recogido;
             }
         #endregion
 
@@ -210,6 +212,10 @@ namespace Demokratos{
                 visual.UpdateColorEnergia(tipoEnergia);
                 if(Ev_OnTipoEnergiaCambia != null)
                     Ev_OnTipoEnergiaCambia.Invoke(tipoEnergia);
+            }
+
+            public void Bidon_Nafta_recogido(){
+                AumentarEnergia(1);
             }
         #endregion
 

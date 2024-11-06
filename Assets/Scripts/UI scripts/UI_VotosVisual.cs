@@ -60,6 +60,7 @@ namespace SistemaVotacion {
             acta_B.ApagarVisuales();
             barras_GO.SetActive(false);
             personas_GO.SetActive(false);
+            timerVotos.ToggleTimerUI(true);
         }
 
         public void EsconderActas(bool animar = true)
@@ -80,6 +81,7 @@ namespace SistemaVotacion {
             barra_B.color = acta_B.mi_color;
             barras_GO.SetActive(true);
             personas_GO.SetActive(true);
+            timerVotos.ToggleTimerUI(false);
         }
 
         public void MostrarVotosActuales(SistemaVotacion.Acta[] actas)

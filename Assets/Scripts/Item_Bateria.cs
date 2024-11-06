@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Demokratos{
 public class Item_Bateria : MonoBehaviour
@@ -12,6 +13,7 @@ public class Item_Bateria : MonoBehaviour
         public delegate void BateriaDelegate();
         public delegate void VoidFloatDelegate(float _energia);
         public static event BateriaDelegate Ev_BateriaPickup;
+        public UnityEvent onScenarioPickupEvent; // Evento específico para el tutorial
     #endregion
 
     private void OnTriggerEnter2D(Collider2D otro)
@@ -20,6 +22,9 @@ public class Item_Bateria : MonoBehaviour
         {
             if(Ev_BateriaPickup != null)
                 Ev_BateriaPickup.Invoke();
+            
+            onScenarioPickupEvent?.Invoke();
+            
             // Genera particulas cuando el jugador lo junta
             if(pickupParticulas)
             {

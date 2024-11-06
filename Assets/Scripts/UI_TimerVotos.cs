@@ -21,7 +21,7 @@ namespace Demokratos.UI {
 
         void Start()
         {
-            StartTimer(timerDuration);  // Comienza el timer con la duración definida
+            ToggleTimerUI(false);
         }
 
         void Update()

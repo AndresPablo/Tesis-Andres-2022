@@ -66,7 +66,7 @@ public class UI_BarraEnergia : MonoBehaviour
         int i = 0;
         int cantidadRedondeada = Mathf.FloorToInt(cantidadInterpolada);
 
-        // Baterías completamente llenas
+        // Llenar las baterías completamente cargadas
         for (; i < cantidadRedondeada && i < ui_baterias_obtenidas.Length; i++)
         {
             ui_baterias_obtenidas[i].enabled = true;
@@ -74,24 +74,36 @@ public class UI_BarraEnergia : MonoBehaviour
             ui_baterias_obtenidas[i].fillAmount = 1.0f; // Completamente llena
         }
 
-        // Llenado progresivo de la última batería (si hay un valor decimal)
+        // Llenado progresivo de la última batería (si es necesario)
         if (i < cantidad && i < ui_baterias_obtenidas.Length)
         {
             ui_baterias_obtenidas[i].enabled = true;
+
+            // Verificar si la cantidadInterpolada es muy cercana al siguiente número entero
             float porcentajeLlenado = cantidadInterpolada - cantidadRedondeada;
-            ui_baterias_obtenidas[i].color = color_energia_actual;
-            ui_baterias_obtenidas[i].fillAmount = porcentajeLlenado; // Usar fillAmount para llenado parcial
+            if (Mathf.Abs(porcentajeLlenado - 1.0f) < 0.01f)
+            {
+                // La batería está llena si el porcentaje es cercano a 1
+                ui_baterias_obtenidas[i].fillAmount = 1.0f;
+                ui_baterias_obtenidas[i].color = color_energia_actual;
+            }
+            else
+            {
+                // Llenado parcial si no llega al 1 completo
+                ui_baterias_obtenidas[i].fillAmount = porcentajeLlenado;
+                ui_baterias_obtenidas[i].color = color_energia_actual;
+            }
         }
-        
-        // Baterías vacías después de la última llena
+
+        // Mostrar las baterías vacías después de la última llena
         for (; i < cantidad_maxima && i < ui_baterias_obtenidas.Length; i++)
         {
             ui_baterias_obtenidas[i].enabled = true;
             ui_baterias_obtenidas[i].color = paleta.colorGrisApagado;
-            ui_baterias_obtenidas[i].fillAmount = 1.0f; // Marcada como vacía pero habilitada
+            ui_baterias_obtenidas[i].fillAmount = 1.0f; // Vacías pero habilitadas
         }
 
-        // Ocultar baterías fuera del rango de cantidad_maxima
+        // Ocultar baterías fuera del rango de `cantidad_maxima`
         for (; i < ui_baterias_obtenidas.Length; i++)
         {
             ui_baterias_obtenidas[i].enabled = false;

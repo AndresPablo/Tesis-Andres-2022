@@ -50,7 +50,7 @@ public class OSC_ReceptorVotos : MonoBehaviour
 
         if(izq != 0 || der != 0)
         {
-            Debug.Log("Votos:   " + izq + " - " + der);
+//            Debug.Log("Votos:   " + izq + " - " + der);
         }
     }
 

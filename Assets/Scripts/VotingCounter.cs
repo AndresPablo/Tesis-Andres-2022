@@ -19,17 +19,6 @@ public class VotingCounter : MonoBehaviour
     #endregion
    
 
-    void Start()
-    {
-        
-    }
-
-    public void OSCMessageReceived(OSC.NET.OSCMessage message){
-		string address = message.Address;
-		ArrayList args = message.Values;
-        Debug.Log(args);
-        // TODO emprolijar lectura de paquetes
-    }
 
     public void SetActasParaEleccion(Acta[] actas)
     {
@@ -83,19 +72,28 @@ public class VotingCounter : MonoBehaviour
 
     public Acta GetGanadora()
     {
-        int indiceGanador = Random.Range(0, ActasEnEleccion.Count);
         int _votosMax = 0;
-        Acta _ganadora = ActasEnEleccion[indiceGanador];
-        foreach(Acta a in ActasEnEleccion)
+        Acta _ganadora = ActasEnEleccion[0];
+
+        foreach (Acta a in ActasEnEleccion)
         {
-            if(a.votos > _votosMax)
+            if (a.votos > _votosMax)
             {
                 _votosMax = a.votos;
-                indiceGanador = ActasEnEleccion.IndexOf(a);
+                _ganadora = a;
+            }
+            else if (a.votos == _votosMax)
+            {
+                // Si hay empate, selecciona aleatoriamente entre las dos
+                _ganadora = Random.Range(0, 2) == 0 ? _ganadora : a;
+                //Debug.Log(_ganadora.name);
             }
         }
+
+        //Debug.Log("Gana " + _ganadora.name + " con " + _ganadora.votos + " votos");
         return _ganadora;
     }
+
 
     #region DEBUG
     void DebugInput()

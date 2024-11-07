@@ -12,7 +12,7 @@ namespace SistemaVotacion {
         [SerializeField] UI_Acta acta_B;
         [SerializeField] UI_TimerVotos timerVotos;
         [SerializeField] TextMeshProUGUI labelResultado;
-        [SerializeField] float tiempoMuestraResultado = 3f;
+        [SerializeField] float tiempoMuestraResultado = 2f;
         [Space]
         [SerializeField] Animator animator;
         
@@ -54,13 +54,15 @@ namespace SistemaVotacion {
             labelResultado.transform.parent.gameObject.SetActive(false);
         }
 
-        void ApagarActas()
+        void ApagarActas(float _tiempoEntreElecciones)
         {
             acta_A.ApagarVisuales();
             acta_B.ApagarVisuales();
             barras_GO.SetActive(false);
             personas_GO.SetActive(false);
+            // empezar el timer
             timerVotos.ToggleTimerUI(true);
+            timerVotos.StartTimer(_tiempoEntreElecciones);
         }
 
         public void EsconderActas(bool animar = true)

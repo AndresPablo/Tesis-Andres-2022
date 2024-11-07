@@ -14,7 +14,7 @@ namespace Demokratos.UI {
         [SerializeField] Image fill_imagen_reloj;
         [SerializeField] TextMeshProUGUI label_temporizador; 
 
-        public float timerDuration = 10f;  // Duración total del timer (en segundos)
+        float timerDuration = 10f;  // Duración total del timer (en segundos)
         private float timeRemaining;      // Tiempo restante
 
         private bool isTimerRunning = false;  // Control para saber si el timer está corriendo

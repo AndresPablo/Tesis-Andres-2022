@@ -45,7 +45,7 @@ public class VoteControl : MonoBehaviour
         votos_no = 0;
         votos_si = 0;
         dataActual = null;
-        miPanel.Limpiar();
+        //miPanel.Limpiar();
         StartCoroutine("RutinadeVotacion");
     }
 

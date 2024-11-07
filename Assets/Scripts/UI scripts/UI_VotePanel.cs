@@ -23,7 +23,7 @@ public class UI_VotePanel : MonoBehaviour
 
     private void Start()
     {
-        Limpiar();
+        //Limpiar();
         //VoteControl.Ev_NuevoVotoSi += NuevoVoto;
         //VoteControl.Ev_NuevoVotoNo += NuevoVoto;
         VotingCounter.Ev_CambiarVotos += MostrarVotos;
@@ -130,7 +130,7 @@ public class UI_VotePanel : MonoBehaviour
         acta_der.CargarInfo(vControl.dataActual.actaB);
     }
 
-    public void Limpiar()
+    public void Limpiar(float _tiempoEntreElecciones)
     {
         gameObject.SetActive(false);
         votosA = votosB = 0;

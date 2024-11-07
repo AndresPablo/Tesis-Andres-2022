@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 2455588969441794127}
   - component: {fileID: 7106995477479792350}
   m_Layer: 0
-  m_Name: Bidon Nafta
+  m_Name: Bidon Nafta gas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,6 +248,10 @@ MonoBehaviour:
   cantidadEnergia: 1
   pickupParticulas: {fileID: 0}
   pickUp_SFX: {fileID: 0}
+  col: {fileID: 2455588969441794127}
+  grafico: {fileID: 1783389197450454286}
+  fondo: {fileID: 8834757910899769442}
+  transparencia: 0.1
   onScenarioPickupEvent:
     m_PersistentCalls:
       m_Calls: []

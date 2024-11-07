@@ -35,11 +35,12 @@ public class VotingLogic : MonoBehaviour
 
     #region EVENTOS de VOTACION
         public delegate void VoidDelegate();
+        public delegate void FloatDelegate(float _tiempo);
         public delegate void ResultDelegate(Acta acta);
         public delegate void StateDelegate(bool estado);
         public static event StateDelegate Ev_EstadoVotacion;
         public static event VoidDelegate Ev_Abre;
-        public static event VoidDelegate Ev_Cierra;
+        public static event FloatDelegate Ev_Cierra;
         public static event ResultDelegate Ev_AplicarResultado;
     #endregion
 
@@ -153,7 +154,7 @@ public class VotingLogic : MonoBehaviour
             SetearEstado(EstadoVotacion.ESPERA);
         if(Ev_Cierra != null)
         {
-            Ev_Cierra.Invoke();
+            Ev_Cierra.Invoke(tiempoEntreElecciones);
         }
     }
 

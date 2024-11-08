@@ -17365,7 +17365,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 896416779, guid: de98482adec30904faa365a5c69a6cb5, type: 3}
       propertyPath: energiaInicial
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 896416779, guid: de98482adec30904faa365a5c69a6cb5, type: 3}
+      propertyPath: energiaMaxDisponible
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5174167780260644988, guid: de98482adec30904faa365a5c69a6cb5,
         type: 3}

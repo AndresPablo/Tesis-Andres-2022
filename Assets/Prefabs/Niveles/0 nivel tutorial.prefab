@@ -6982,7 +6982,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 2
-      m_TileSpriteIndex: 30
+      m_TileSpriteIndex: 10
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -32221,8 +32221,8 @@ Tilemap:
     m_Data: {fileID: -849216327, guid: 54a537fa4a55d054986fc654eef9cbc3, type: 3}
   - m_RefCount: 25
     m_Data: {fileID: 1965973240, guid: 54a537fa4a55d054986fc654eef9cbc3, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 2088492060, guid: 54a537fa4a55d054986fc654eef9cbc3, type: 3}
   - m_RefCount: 19
     m_Data: {fileID: -1337374144, guid: 54a537fa4a55d054986fc654eef9cbc3, type: 3}
   - m_RefCount: 10
@@ -32261,8 +32261,6 @@ Tilemap:
     m_Data: {fileID: 516406247, guid: 54a537fa4a55d054986fc654eef9cbc3, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: -1822688284, guid: 54a537fa4a55d054986fc654eef9cbc3, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 2088492060, guid: 54a537fa4a55d054986fc654eef9cbc3, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 2838
     m_Data:
@@ -34296,13 +34294,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.9969003
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3064085
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.449997
+      value: 20.9222
       objectReference: {fileID: 0}
     - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -20.830002
+      value: -22.4497
       objectReference: {fileID: 0}
     - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
         type: 3}
@@ -36532,6 +36540,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7543245899018482783}
     m_Modifications:
+    - target: {fileID: 237786463, guid: 17b57e83c870de9499831bce858c42f9, type: 3}
+      propertyPath: onScenarioPickupEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 237786463, guid: 17b57e83c870de9499831bce858c42f9, type: 3}
+      propertyPath: onScenarioPickupEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 237786463, guid: 17b57e83c870de9499831bce858c42f9, type: 3}
+      propertyPath: onScenarioPickupEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4456195817820225602, guid: 17b57e83c870de9499831bce858c42f9,
         type: 3}
       propertyPath: m_Name

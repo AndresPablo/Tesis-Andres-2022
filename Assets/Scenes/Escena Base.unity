@@ -15453,8 +15453,8 @@ MonoBehaviour:
     sprite_B: {fileID: 0}
     efecto: 4
   duracionVotacion: 5
-  tiempoEntreElecciones: 3
-  Estado: 1
+  tiempoEntreElecciones: 14
+  Estado: 0
   visual: {fileID: 112274929}
   tiempoTranscurrido: 0
 --- !u!114 &1946912420

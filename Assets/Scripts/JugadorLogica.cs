@@ -117,8 +117,9 @@ namespace Demokratos{
                 if(estado == EstadoJugador.MUERTO)
                     return;
                 // Joystick button 0
-                if(Input.GetButtonDown("Turbo")){
-                    if(!turboMode && energiaActual > 10)
+                if(Input.GetButtonDown("Turbo"))
+            {
+                    if(!turboMode && energiaActual >= 1)
                     {
                         // activa el turno porque esta vivo y tiene suficiente energia
                         EncenderTurbo();
@@ -262,7 +263,6 @@ namespace Demokratos{
 
             void LlamarRespawn()
             {
-                Debug.Log("reviviendo en " + tiempoRespawn);
                 Invoke("Spawn", tiempoRespawn);
             }
 

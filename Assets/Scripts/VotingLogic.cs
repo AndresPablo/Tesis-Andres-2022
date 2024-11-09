@@ -173,5 +173,18 @@ public class VotingLogic : MonoBehaviour
         tiempoTranscurrido = 0;
         ToogleVotacion();
     }
+
+    public void SetVotacionActiva(bool _estadoActivo, bool reiniciarTimer = false)
+        {
+            if(reiniciarTimer)
+                tiempoTranscurrido = 0;
+            if (_estadoActivo == true)
+            {
+                SetearEstado(EstadoVotacion.ESPERA);
+            }else
+            {
+                SetearEstado(EstadoVotacion.APAGADO);
+            }
+        }
 }
 }

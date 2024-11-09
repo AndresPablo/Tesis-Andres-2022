@@ -3615,7 +3615,6 @@ Transform:
   - {fileID: 5495533791294597711}
   - {fileID: 7091044173454255988}
   - {fileID: 7858712392255548738}
-  - {fileID: 6104330713149359360}
   m_Father: {fileID: 7543245899018482783}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -33034,6 +33033,11 @@ PrefabInstance:
       objectReference: {fileID: 5181651962017994099}
     - target: {fileID: 4452751537674688027, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
         type: 3}
+      propertyPath: activarVotos
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452751537674688027, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
+        type: 3}
       propertyPath: activarEnergia
       value: 1
       objectReference: {fileID: 0}
@@ -33835,111 +33839,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1820595510438754380}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &2011712829147264889
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 722660256061468869}
-    m_Modifications:
-    - target: {fileID: 2155687349958448148, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: m_Name
-      value: TELETRANSPORTADOR A (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4452751537674688027, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: destino
-      value: 
-      objectReference: {fileID: 7234722845945645014}
-    - target: {fileID: 4452751537674688027, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: activarVotos
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4452751537674688027, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: nuevo_spawner
-      value: 
-      objectReference: {fileID: 1902938996792994656}
-    - target: {fileID: 4452751537674688027, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: activarEnergia
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4452751537674688027, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: congelarCamara
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4.5458
-      objectReference: {fileID: 0}
-    - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 32.52
-      objectReference: {fileID: 0}
-    - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -20.830002
-      objectReference: {fileID: 0}
-    - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.08216819
-      objectReference: {fileID: 0}
-    - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b2b668cf301a24c4898b9f0b0e1c1d59, type: 3}
---- !u!4 &6104330713149359360 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5719002365742117497, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
-    type: 3}
-  m_PrefabInstance: {fileID: 2011712829147264889}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2210667644709602299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34607,6 +34506,11 @@ PrefabInstance:
       propertyPath: destino
       value: 
       objectReference: {fileID: 5181651962017994099}
+    - target: {fileID: 4452751537674688027, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
+        type: 3}
+      propertyPath: activarVotos
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4452751537674688027, guid: b2b668cf301a24c4898b9f0b0e1c1d59,
         type: 3}
       propertyPath: activarEnergia

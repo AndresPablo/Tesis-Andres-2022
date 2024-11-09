@@ -35,10 +35,13 @@ public class Teletransportador : MonoBehaviour
         }
 
         if(activarVotos){
-            VotingLogic.singleton.ToogleVotacion(true);
-        }
+            VotingLogic.singleton.SetVotacionActiva(true, true);
+        }else
+            {
+                VotingLogic.singleton.SetVotacionActiva(false);
+            }
 
-        if(activarEnergia){
+            if (activarEnergia){
 
         }
 

@@ -15,7 +15,7 @@ namespace Demokratos {
         void ActualizarTexto(int _bateriasRestantes, int _bateriasTotales)
         {
             //label.text =  _bateriasRestantes + " / " + _bateriasTotales;
-            label.text =  Game_Manager_Nuevo.singleton.Jugador.energiaMaxDisponible-1 + " / " + _bateriasTotales;
+            label.text =  Game_Manager_Nuevo.singleton.Jugador.energiaMaxDisponible + " / " + _bateriasTotales + 1;
         }
     }
 }

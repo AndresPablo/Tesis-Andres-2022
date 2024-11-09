@@ -40,12 +40,18 @@ namespace SistemaVotacion {
             personas_GO.SetActive(false);
         }
 
-        void MostrarResutado(Acta _actaGanadora)
+        void MostrarResutado(Acta _actaGanadora, int index_ganadora)
         {
-            labelResultado.text = "Gana la opcion: " + _actaGanadora.name;
-            labelResultado.transform.parent.gameObject.SetActive(true);
-            EsconderActas(true);
+            //labelResultado.text = "Gana la opcion: " + _actaGanadora.name;
+            //labelResultado.transform.parent.gameObject.SetActive(true);
+            EsconderBarras();
             Invoke("EsconderTextoResultado", 3f);
+            //animar
+            if (index_ganadora == 0)
+                animator.Play("gana_A");
+            else
+            if (index_ganadora == 1)
+                animator.Play("gana_B");
         }
 
         void EsconderTextoResultado()
@@ -56,8 +62,6 @@ namespace SistemaVotacion {
 
         void ApagarActas(float _tiempoEntreElecciones)
         {
-            acta_A.ApagarVisuales();
-            acta_B.ApagarVisuales();
             barras_GO.SetActive(false);
             personas_GO.SetActive(false);
             // empezar el timer
@@ -65,19 +69,16 @@ namespace SistemaVotacion {
             timerVotos.StartTimer(_tiempoEntreElecciones);
         }
 
-        public void EsconderActas(bool animar = true)
+        public void EsconderBarras()
         {
-            //acta_A.Esconder(animar);
-            //acta_B.Esconder(animar);
             barras_GO.SetActive(false);
             personas_GO.SetActive(false);
-            animator.Play("ocuto");
         }
 
         public void MostrarActas()
         {
-            //acta_A.Mostrar();
-            //acta_B.Mostrar();
+            Debug.Log("Mostrar actas");
+
             animator.Play("Entra abajo");
             barra_A.color = acta_A.mi_color;
             barra_B.color = acta_B.mi_color;

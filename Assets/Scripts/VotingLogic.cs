@@ -36,7 +36,7 @@ public class VotingLogic : MonoBehaviour
     #region EVENTOS de VOTACION
         public delegate void VoidDelegate();
         public delegate void FloatDelegate(float _tiempo);
-        public delegate void ResultDelegate(Acta acta);
+        public delegate void ResultDelegate(Acta acta, int index);
         public delegate void StateDelegate(bool estado);
         public static event StateDelegate Ev_EstadoVotacion;
         public static event VoidDelegate Ev_Abre;
@@ -77,10 +77,11 @@ public class VotingLogic : MonoBehaviour
     void AplicarEfecto()
     {
         Acta actaGanadora = GetActaGanadora();
+            int index_ganadora = ScriptContador.GetIndexGanadora();
         
         // Cargar los efectos del acta elegida
         if(Ev_AplicarResultado != null)
-            Ev_AplicarResultado.Invoke(actaGanadora);
+            Ev_AplicarResultado.Invoke(actaGanadora, index_ganadora);
         // Cerramos la votacion
         CerrarVotacion();
     }

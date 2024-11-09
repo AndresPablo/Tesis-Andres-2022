@@ -98,7 +98,7 @@ namespace Demokratos{
 
 
         #region VOTACIONES
-        void AplicarResultadoVotacion(SistemaVotacion.Acta acta)
+        void AplicarResultadoVotacion(SistemaVotacion.Acta acta, int index_ganadora)
         {
             Jugador.SetearTipoEnergia(TipoEnergia.NINGUNO);
             switch(acta.efecto)

@@ -10,6 +10,7 @@ public class VotingCounter : MonoBehaviour
 {
     // Las opciones para elegir
     [SerializeField] List<Acta> ActasEnEleccion = new List<Acta>();
+        int index_ultima_ganadora;
 
     #region EVENTOS
         public delegate void EventoConteoActualizado(Acta[] actas);
@@ -34,7 +35,7 @@ public class VotingCounter : MonoBehaviour
     {
         // Si no hay actas tiraria error
         if(ActasEnEleccion.Count == 0){
-            Debug.LogWarning("ERROR: no hay actas que votar en este momento");
+            //Debug.LogWarning("ERROR: no hay actas que votar en este momento");
             return;
         }
         
@@ -74,24 +75,34 @@ public class VotingCounter : MonoBehaviour
     {
         int _votosMax = 0;
         Acta _ganadora = ActasEnEleccion[0];
+        index_ultima_ganadora = 0; // Inicializa el índice de la ganadora como el primero por defecto.
 
-        foreach (Acta a in ActasEnEleccion)
+        for (int i = 0; i < ActasEnEleccion.Count; i++)
         {
+            Acta a = ActasEnEleccion[i];
+
             if (a.votos > _votosMax)
             {
                 _votosMax = a.votos;
                 _ganadora = a;
+                index_ultima_ganadora = i;  // Actualiza el índice de la acta ganadora
             }
             else if (a.votos == _votosMax)
             {
                 // Si hay empate, selecciona aleatoriamente entre las dos
                 _ganadora = Random.Range(0, 2) == 0 ? _ganadora : a;
-                //Debug.Log(_ganadora.name);
+                index_ultima_ganadora = Random.Range(0, 2) == 0 ? index_ultima_ganadora : i; // Actualiza el índice con el empate
             }
         }
 
-        //Debug.Log("Gana " + _ganadora.name + " con " + _ganadora.votos + " votos");
+        // Devuelve la acta ganadora
         return _ganadora;
+    }
+
+
+    public int GetIndexGanadora()
+    {
+        return index_ultima_ganadora;
     }
 
 

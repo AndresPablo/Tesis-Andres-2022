@@ -50,7 +50,7 @@ namespace Demokratos {
                 break;
                 default:
                     return Color.white;
-                    break;
+                break;
             }
         }
 
@@ -76,7 +76,7 @@ namespace Demokratos {
                 break;
                 default:
                     return icono_default;
-                    break;
+                break;
             }
         }
 

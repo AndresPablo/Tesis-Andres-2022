@@ -56,6 +56,8 @@ public class Item_Nafta : MonoBehaviour
                     Ev_NaftaPickup.Invoke();
                 
                 onScenarioPickupEvent?.Invoke();
+
+                Game_Manager_Nuevo.singleton.Jugador.AumentarEnergia(cantidadEnergia);
                 
                 // Genera particulas cuando el jugador lo junta
                 if(pickupParticulas)

@@ -149,7 +149,6 @@ namespace SistemaVotacion {
         {
             if(animar)
             {
-                //AnimacionSalida();
                 ApagarVisuales();
             }else
             {
@@ -165,40 +164,8 @@ namespace SistemaVotacion {
         public void Mostrar()
         {
             miCanvas.enabled = true;
-            // animacion
-            //AnimacionEntrada();
         }
 
-        #region ANIMACIONES
-        void AnimacionEntrada()
-        {
-            FadeIn();
-        }
-
-        void AnimacionSalida()
-        {
-            //slide up over 1 second
-            LeanTween.moveY(gameObject, -500f, 1f).setOnComplete( () => {
-                ApagarVisuales(); 
-         });; 
-        }
-
-        void AnimacionSacudir()
-        {
-            LeanTween.rotateAround(gameObject, Vector3.forward, 10f, 0.5f) ; //shake effect
-        }
-
-        void FadeIn()
-        {
-            //canvasGroup.alpha = 0;
-            LeanTween.alpha(gameObject, 1f, 3f);
-        }
-
-        void EntrarDesdeArriba()
-        {
-            transform.position = new Vector2(transform.position.x, 1080); //asumiendo que la altura de la pantalla es 1080
-            LeanTween.moveY(gameObject, 0, 1f).setEase(LeanTweenType.easeOutQuad);
-        }
-        #endregion
+        
     }
 }

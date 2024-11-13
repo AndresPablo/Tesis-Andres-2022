@@ -91,6 +91,7 @@ namespace Demokratos{
             Jugador.Spawn(LevelManager.spawnPos) ;
             Jugador.ResetearEnergia();
             bateriasEnNivel_Max = Nivel_Handler.GetCantidadBaterias();
+            VotingLogic.singleton.SetVotacionActiva(true, true);
             if (Ev_PasoNivel != null)
                 Ev_PasoNivel(LevelManager.currentLevel);
         }

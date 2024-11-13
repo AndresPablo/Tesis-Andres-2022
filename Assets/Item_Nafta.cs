@@ -22,6 +22,7 @@ public class Item_Nafta : MonoBehaviour
     void Start()
     {
         JugadorLogica.Ev_OnTipoEnergiaCambia += Toogle;
+        Toogle(Game_Manager_Nuevo.singleton.Jugador.tipoEnergia);
     }
 
     void OnDisable(){
@@ -57,7 +58,7 @@ public class Item_Nafta : MonoBehaviour
                 
                 onScenarioPickupEvent?.Invoke();
 
-                Game_Manager_Nuevo.singleton.Jugador.AumentarEnergia(cantidadEnergia);
+                Game_Manager_Nuevo.singleton.Jugador.AumentarEnergia(cantidadEnergia, TipoEnergia.FOSIL);
                 
                 // Genera particulas cuando el jugador lo junta
                 if(pickupParticulas)

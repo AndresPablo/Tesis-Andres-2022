@@ -32,6 +32,9 @@ public class Item_Bateria : MonoBehaviour
                 go.transform.position = this.transform.position;
             }
 
+                // Muestra un texto arriba del jugador
+                UI_NotificacionFlotante.singleton.CrearEnJugador("Bateria maxima +1");
+
             // efecto de sonido
             AudioManager.instance.PlayOneShot(pickUp_SFX);
     

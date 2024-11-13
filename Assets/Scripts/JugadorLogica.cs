@@ -133,11 +133,14 @@ namespace Demokratos{
             
             public void ApagarTurbo()
             {
+                if (turboMode)
+                    UI_NotificacionFlotante.singleton.CrearEnJugador("TURBO apagado...");
+            
                 turboMode = false;
                 controladorMov.SetStats(defaultControllerStats);
                 visual.SetEmisionRastro(false);
                 AudioManager.instance.PlayOneShot(misSonidos.turboApagar_SFX);
-                if(Ev_TurboOff != null)
+                if (Ev_TurboOff != null)
                     Ev_TurboOff.Invoke();
             }
             
@@ -148,8 +151,9 @@ namespace Demokratos{
                 visual.SetColorRastro(tipoEnergia);
                 visual.SetEmisionRastro(true);
                 AudioManager.instance.PlayOneShot(misSonidos.turboActivar_SFX);
+                UI_NotificacionFlotante.singleton.CrearEnJugador("Modo TURBO!");
                 if(Ev_TurboOn != null)
-                    Ev_TurboOn.Invoke();
+                Ev_TurboOn.Invoke();
             }
         #endregion
 
@@ -163,9 +167,10 @@ namespace Demokratos{
                 if(energiaActual >= energiaMax)
                     energiaActual = energiaMax;  
                 if(energiaActual >= energiaMaxDisponible)
-                    energiaActual = energiaMaxDisponible;  
+                    energiaActual = energiaMaxDisponible;
+            // muestra texto arriba del jugador    
 
-                if(Ev_OnEnergiaCambia != null)
+            if (Ev_OnEnergiaCambia != null)
                     Ev_OnEnergiaCambia(energiaActual);    
             }
 
@@ -173,6 +178,7 @@ namespace Demokratos{
             {
                 if(tipoEnergia == _tipo)
                 {
+            UI_NotificacionFlotante.singleton.CrearEnJugador("Recargando");
                     AumentarEnergia(_valor);
                 }
             }
@@ -311,6 +317,7 @@ namespace Demokratos{
 
         void InvertirGravedad()
         {
+                UI_NotificacionFlotante.singleton.CrearEnJugador("Gravedad Invertida");
             Debug.LogWarning("TODO: no implementado.");
         }
 

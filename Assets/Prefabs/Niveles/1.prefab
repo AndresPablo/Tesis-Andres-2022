@@ -90,6 +90,9 @@ Transform:
   - {fileID: 4947802617784083808}
   - {fileID: 9061604352480243902}
   - {fileID: 2951413161546478801}
+  - {fileID: 6826421280886074970}
+  - {fileID: 5777411309608398646}
+  - {fileID: 5123234319220172362}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6893,6 +6896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   congelarCamara: 0
+  energiaInicial: 2
 --- !u!1 &7629654684983483724
 GameObject:
   m_ObjectHideFlags: 0
@@ -9405,6 +9409,81 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4799839534426241900}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4809440871348484874
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7543245899018482783}
+    m_Modifications:
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 32.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825539351199088944, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_Name
+      value: Bidon Nafta gas (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 69fb52c286c8b654ba5b3e2f2924aad9, type: 3}
+--- !u!4 &5123234319220172362 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+    type: 3}
+  m_PrefabInstance: {fileID: 4809440871348484874}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5306171342978050193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9960,6 +10039,81 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6109896873614584067}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6163895704516670070
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7543245899018482783}
+    m_Modifications:
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 59
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825539351199088944, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_Name
+      value: Bidon Nafta gas (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 69fb52c286c8b654ba5b3e2f2924aad9, type: 3}
+--- !u!4 &5777411309608398646 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6163895704516670070}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6377014389220249543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10119,6 +10273,81 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4935623307574963067, guid: 644f90fb07f7dd04dac5014c9b9b2502,
     type: 3}
   m_PrefabInstance: {fileID: 6469958316333541825}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6565020622926934810
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7543245899018482783}
+    m_Modifications:
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 58
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825539351199088944, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+        type: 3}
+      propertyPath: m_Name
+      value: Bidon Nafta gas
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 69fb52c286c8b654ba5b3e2f2924aad9, type: 3}
+--- !u!4 &6826421280886074970 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 407560946807856448, guid: 69fb52c286c8b654ba5b3e2f2924aad9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6565020622926934810}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6747004332612718474
 PrefabInstance:

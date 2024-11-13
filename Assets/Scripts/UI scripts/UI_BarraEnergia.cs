@@ -14,8 +14,8 @@ public class UI_BarraEnergia : MonoBehaviour
     [SerializeField] float tiempoParaEsconder = 5f;
     [SerializeField]float cantidad;
     [SerializeField]float cantidad_maxima;
-    private float ultimaCantidad = -0;
-    private float ultimaCantidadMaxima = -0;
+    private float ultimaCantidad = 0;
+    private float ultimaCantidadMaxima = 0;
     [SerializeField] private float velocidadLlenado = 0.5f;  // Controla la velocidad de llenado de la última batería
     private float ultimaCantidadLlenado;  // Almacena el progreso de la última batería
     private float cantidadInterpolada;  // Valor que incrementa gradualmente hasta alcanzar `cantidad`
@@ -73,7 +73,7 @@ public class UI_BarraEnergia : MonoBehaviour
             ui_baterias_obtenidas[i].color = color_energia_actual;
             ui_baterias_obtenidas[i].fillAmount = 1.0f; // Completamente llena
         }
-
+        /*
         // Llenado progresivo de la última batería (si es necesario)
         if (i < cantidad && i < ui_baterias_obtenidas.Length)
         {
@@ -93,7 +93,7 @@ public class UI_BarraEnergia : MonoBehaviour
                 ui_baterias_obtenidas[i].fillAmount = porcentajeLlenado;
                 ui_baterias_obtenidas[i].color = color_energia_actual;
             }
-        }
+        }*/
 
         // Mostrar las baterías vacías después de la última llena
         for (; i < cantidad_maxima && i < ui_baterias_obtenidas.Length; i++)
@@ -119,6 +119,8 @@ public class UI_BarraEnergia : MonoBehaviour
             
             // Evita que cantidadInterpolada vuelva a bajar (si `cantidad` disminuye)
             if (cantidadInterpolada > cantidad) cantidadInterpolada = cantidad;
+
+                cantidadInterpolada = cantidad; // borrar despues
 
             UpdateVisual();  // Actualiza visualmente en cada cambio
         }

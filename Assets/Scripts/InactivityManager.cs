@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+namespace Demokratos { 
 public class InactivityManager : MonoBehaviour {
     public float inactivityThreshold = 600f; // Tiempo en segundos antes de cambiar de escena.
-    public string targetScene = "Tutorial"; // Escena a cargar después de inactividad.
 
     private float timeSinceLastActivity = 0f;
 
@@ -23,6 +24,7 @@ public class InactivityManager : MonoBehaviour {
     }
 
     private void LoadTargetScene() {
-        SceneManager.LoadScene(targetScene);
+        Game_Manager_Nuevo.singleton.Reiniciar();
     }
+}
 }

@@ -24,7 +24,7 @@ namespace Demokratos {
 
     void ActualizarTexto(int _nivel)
         {
-            label.text = "Nivel " + _nivel;
+            label.text = "Nivel " + (_nivel+1);
         }
     }
 }

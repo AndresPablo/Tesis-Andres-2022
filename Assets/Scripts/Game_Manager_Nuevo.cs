@@ -79,6 +79,7 @@ namespace Demokratos{
 
         public void Reiniciar(){
             // mostramos el tutorial y despues desde ahi se llama a EmpezarPartida()
+            Jugador.gameObject.SetActive(false);
             Interfaz.Mostrar_Tutorial();
         }
 
@@ -90,13 +91,12 @@ namespace Demokratos{
             Jugador.Spawn(LevelManager.spawnPos) ;
             Jugador.ResetearEnergia();
             bateriasEnNivel_Max = Nivel_Handler.GetCantidadBaterias();
-            if(Ev_PasoNivel != null)
+            if (Ev_PasoNivel != null)
                 Ev_PasoNivel(LevelManager.currentLevel);
         }
 
         public void NivelCompletado()
         {
-            VotingLogic.singleton.ToogleVotacion(true);
             Invoke("EmpezarNuevoNivel", tiempoEntreNiveles);
         }
 
@@ -115,7 +115,7 @@ namespace Demokratos{
 
         public void Victoria()
         {
-            if(OnVictory != null)
+            if (OnVictory != null)
                 OnVictory.Invoke();
             //SceneManager.LoadScene("Escena Victoria");
             Jugador.gameObject.SetActive(false);

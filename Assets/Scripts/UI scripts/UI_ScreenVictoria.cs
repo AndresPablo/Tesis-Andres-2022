@@ -1,7 +1,7 @@
 using UnityEngine;
-using Viejo;
 using UnityEngine.UI;
 using TMPro;
+using Demokratos;
 
 public class UI_ScreenVictoria : MonoBehaviour
 {
@@ -10,26 +10,23 @@ public class UI_ScreenVictoria : MonoBehaviour
 
     private void Start()
     {
-        gameObject.SetActive(false);
+        AbrirPantalla();
     }
 
     void Update()
     {
-        if (gameObject.activeSelf == false)
-            return;
-
-        if(Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2"))
+        if(Input.GetButtonDown("Turbo") || Input.anyKey || Input.GetButtonDown("Jump"))
         {
-            GameManager.singleton.Reiniciar();
             gameObject.SetActive(false);
+            Game_Manager_Nuevo.singleton.Reiniciar();
         }
     }
 
     public void AbrirPantalla()
     {
-        muertesLabel.text = GameManager.singleton.muertes.ToString("0");
+        muertesLabel.text = Game_Manager_Nuevo.singleton.muertes.ToString("0");
 
-        float tiempoTotal = GameManager.singleton.tiempo;
+        float tiempoTotal = Game_Manager_Nuevo.singleton.tiempo;
         int minutes = Mathf.FloorToInt(tiempoTotal / 60F);
         int seconds = Mathf.FloorToInt(tiempoTotal - minutes * 60);
         string niceTime = string.Format("{0:00}:{1:00}", minutes, seconds);

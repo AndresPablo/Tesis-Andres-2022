@@ -44,6 +44,7 @@ namespace Demokratos.UI {
                     // Asegurarse de que el tiempo no sea negativo
                     timeRemaining = 0;
                     isTimerRunning = false;
+                    ToggleTimerUI(false);
                 }
             }
         }
@@ -60,7 +61,7 @@ namespace Demokratos.UI {
         void UpdateTimerText(float time)
         {
             int seconds = Mathf.CeilToInt(time);  // Redondea hacia arriba el tiempo restante
-            label_temporizador.text = "votar en " + seconds.ToString();  // Muestra solo los segundos
+            label_temporizador.text = seconds.ToString();  // Muestra solo los segundos
 
         }
 

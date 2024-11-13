@@ -162,5 +162,13 @@ public class UI_BarraEnergia : MonoBehaviour
             bat.enabled = false;
         }
     }
+
+    void OnDisable()
+    {
+        JugadorLogica.Ev_OnEnergiaCambia -= UpdateCantidad; 
+        JugadorLogica.Ev_OnEnergiaMaximaCambia -= UpdateCantidad_Maxima; 
+        JugadorLogica.Ev_OnTipoEnergiaCambia -= MostrarCambioTipo; 
+        JugadorLogica.Ev_TurboOn -= Mostrar;
+    }
 }
 }

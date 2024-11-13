@@ -2,6 +2,7 @@ using System;
 using TarodevController;
 using UnityEngine;
 using System.Collections;
+using Viejo;
 
 namespace Demokratos{
 
@@ -237,6 +238,7 @@ namespace Demokratos{
                     ToogleControlador(false);
                     if(Ev_Muere != null) 
                         Ev_Muere.Invoke();
+                    Game_Manager_Nuevo.singleton.AgregarMuerte();
                     LlamarRespawn();
                 }
             }

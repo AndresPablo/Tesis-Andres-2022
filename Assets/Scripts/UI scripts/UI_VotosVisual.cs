@@ -1,6 +1,8 @@
 using Demokratos;
 using TMPro;
 using UnityEngine;
+using System.Collections;
+using System;
 using UnityEngine.UI;
 using Demokratos.UI;
 using SistemaVotacion;
@@ -60,13 +62,19 @@ namespace SistemaVotacion {
             labelResultado.transform.parent.gameObject.SetActive(false);
         }
 
+        IEnumerator AbrirTimer(float _segundosDeTimer, float _esperaInvoke){
+            yield return new WaitForSeconds(_esperaInvoke);
+            timerVotos.ToggleTimerUI(true);
+            timerVotos.StartTimer(_segundosDeTimer);
+        }
+
         void ApagarActas(float _tiempoEntreElecciones)
         {
             barras_GO.SetActive(false);
             personas_GO.SetActive(false);
-            // empezar el timer
-            timerVotos.ToggleTimerUI(true);
-            timerVotos.StartTimer(_tiempoEntreElecciones);
+            // mostrar el timer en X segundos
+            float _tiempoParaTimer = 3;
+            StartCoroutine(AbrirTimer(_tiempoParaTimer, _tiempoEntreElecciones - _tiempoParaTimer));
         }
 
         public void EsconderBarras()
@@ -77,8 +85,6 @@ namespace SistemaVotacion {
 
         public void MostrarActas()
         {
-            Debug.Log("Mostrar actas");
-
             animator.Play("Entra abajo");
             barra_A.color = acta_A.mi_color;
             barra_B.color = acta_B.mi_color;

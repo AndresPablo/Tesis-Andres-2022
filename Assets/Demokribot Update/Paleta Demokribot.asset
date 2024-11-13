@@ -27,7 +27,7 @@ MonoBehaviour:
   colorGrisApagado: {r: 0.3647059, g: 0.3647059, b: 0.3647059, a: 1}
   icono_default: {fileID: 21300000, guid: 8b776fdcb60c4d54387f223dc4d9afc0, type: 3}
   iconoFosil: {fileID: 21300000, guid: c344557ee800aa54e90b7e4b4ffdf094, type: 3}
-  iconoEolica: {fileID: 21300000, guid: fa2660c5b6ed4784885155c5717665bc, type: 3}
+  iconoEolica: {fileID: 21300000, guid: 3473ee5808e5ec2469d3e8e53f9c1d68, type: 3}
   iconoHidro: {fileID: 21300000, guid: 9caa1857dff82ba4bb64e23693a2e19f, type: 3}
   iconoTermica: {fileID: 21300000, guid: f0036530fc8c6c54cbd1e2b0d3e26c19, type: 3}
   iconoSolar: {fileID: 21300000, guid: 2358f8eb2d7bd134b9e60cb72355eb48, type: 3}

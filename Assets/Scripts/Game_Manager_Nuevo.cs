@@ -5,6 +5,7 @@ using SistemaVotacion;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 namespace Demokratos{
     public class Game_Manager_Nuevo : MonoBehaviour
@@ -34,6 +35,10 @@ namespace Demokratos{
         public int bateriasEnNivel;
         public int bateriasEnNivel_Max;
 
+        public int muertes;
+        public float tiempo;
+
+
 
         #region EVENTOS
             public delegate void VoidDelegate();
@@ -53,11 +58,17 @@ namespace Demokratos{
             EmpezarPartida();
         }
 
+        void Update(){
+            // sumamos los segundos en el Update
+            tiempo += Time.deltaTime;
+        }
 
 
         void EmpezarPartida()
         {
             Nivel_Handler.LoadLevel(0);
+            tiempo = 0;
+            muertes = 0;
             Jugador.gameObject.SetActive(true);
             Jugador.SetSpawn(LevelManager.spawnPos);
             Jugador.Spawn(LevelManager.spawnPos) ;
@@ -65,6 +76,10 @@ namespace Demokratos{
             Jugador.SetearTipoEnergia(Jugador.tipoEnergia);
             bateriasEnNivel_Max = Nivel_Handler.GetCantidadBaterias();
             ChequearPasoNivel();
+        }
+
+        public void Reiniciar(){
+            SceneManager.LoadScene("Escena Base");
         }
 
         public void EmpezarNuevoNivel()
@@ -75,6 +90,8 @@ namespace Demokratos{
             Jugador.Spawn(LevelManager.spawnPos) ;
             Jugador.ResetearEnergia();
             bateriasEnNivel_Max = Nivel_Handler.GetCantidadBaterias();
+            if(Ev_PasoNivel != null)
+                Ev_PasoNivel(LevelManager.currentLevel);
         }
 
         public void NivelCompletado()
@@ -96,6 +113,12 @@ namespace Demokratos{
             //Debug.Log(bateriasEnNivel.ToString() + "/" + bateriasEnNivel_Max.ToString());
         }
 
+        public void Victoria()
+        {
+            /*if(OnVictory != null)
+                OnVictory.Invoke();*/
+            SceneManager.LoadScene("Escena Victoria");
+        }
 
         #region VOTACIONES
         void AplicarResultadoVotacion(SistemaVotacion.Acta acta, int index_ganadora)
@@ -143,6 +166,10 @@ namespace Demokratos{
         public void InvertirGravedad()
         {
             // TODO
+        }
+
+        public void AgregarMuerte(){
+            muertes++;
         }
 
         #endregion

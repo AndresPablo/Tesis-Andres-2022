@@ -171,5 +171,12 @@ public class JugadorVisual : MonoBehaviour
             .GetComponent<ParticleSystem>();
         //p.main.startColor.color = paletaColores.GetColorEnergia(Game_Manager_Nuevo.singleton.Jugador.tipoEnergia);
     }
+
+    void OnDisable()
+    {
+        JugadorLogica.Ev_Muere -= Esconder;
+        JugadorLogica.Ev_Muere -= EmitirParticulas_Muerte;
+        JugadorLogica.Ev_Spawnea -= Mostrar;  
+    }
 }
 }

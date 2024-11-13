@@ -19,7 +19,10 @@ namespace Demokratos{
             currentLevel++;
             if(currentLevel >= levelsPrefabs.Length)
             {
-                currentLevel = 0; 
+                currentLevel = 0;
+                // Avisa al GM que hemos ganado
+                Game_Manager_Nuevo.singleton.Victoria();
+                return;
             }
 
             LoadLevel(currentLevel);

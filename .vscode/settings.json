@@ -52,5 +52,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Tesis-Andres-2022.sln"
+    "dotnet.defaultSolution": "Tesis Andres 2022.sln"
 }

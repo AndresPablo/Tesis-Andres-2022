@@ -1,10 +1,10 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using Demokratos;
 
 public class UI_Tutorial : MonoBehaviour
 {
 public GameObject[] tutorialPanels; // Lista de paneles del tutorial.
-    public string targetScene = "MainGame"; // Escena a cargar al finalizar el tutorial.
     private int currentPanelIndex = 0; // Índice del panel actual.
 
     void Start() {
@@ -31,11 +31,14 @@ public GameObject[] tutorialPanels; // Lista de paneles del tutorial.
         if (currentPanelIndex < tutorialPanels.Length) {
             ShowPanel(currentPanelIndex); // Muestra el siguiente panel.
         } else {
-            LoadTargetScene(); // Si no hay más paneles, carga la escena objetivo.
+            TerminarTutorial(); // Si no hay más paneles, carga la escena objetivo.
         }
     }
 
-    private void LoadTargetScene() {
-        SceneManager.LoadScene(targetScene);
+    private void TerminarTutorial()
+    {
+        currentPanelIndex = 0;
+        ShowPanel(0);
+        Game_Manager_Nuevo.singleton.EmpezarPartida();
     }
 }

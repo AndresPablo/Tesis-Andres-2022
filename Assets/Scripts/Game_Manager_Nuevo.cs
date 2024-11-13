@@ -53,9 +53,7 @@ namespace Demokratos{
         {
             Item_Bateria.Ev_BateriaPickup += ChequearPasoNivel;
             VotingLogic.Ev_AplicarResultado += AplicarResultadoVotacion;
-            Jugador.gameObject.SetActive(false);
-            // TODO: borrar porque es para PROBAR
-            EmpezarPartida();
+            JuegoIniciadoPrimeraVez();
         }
 
         void Update(){
@@ -64,7 +62,7 @@ namespace Demokratos{
         }
 
 
-        void EmpezarPartida()
+        public void EmpezarPartida()
         {
             Nivel_Handler.LoadLevel(0);
             tiempo = 0;
@@ -76,10 +74,12 @@ namespace Demokratos{
             Jugador.SetearTipoEnergia(Jugador.tipoEnergia);
             bateriasEnNivel_Max = Nivel_Handler.GetCantidadBaterias();
             ChequearPasoNivel();
+            Interfaz.Mostrar_Gameplay();
         }
 
         public void Reiniciar(){
-            SceneManager.LoadScene("Escena Base");
+            // mostramos el tutorial y despues desde ahi se llama a EmpezarPartida()
+            Interfaz.Mostrar_Tutorial();
         }
 
         public void EmpezarNuevoNivel()
@@ -115,9 +115,16 @@ namespace Demokratos{
 
         public void Victoria()
         {
-            /*if(OnVictory != null)
-                OnVictory.Invoke();*/
-            SceneManager.LoadScene("Escena Victoria");
+            if(OnVictory != null)
+                OnVictory.Invoke();
+            //SceneManager.LoadScene("Escena Victoria");
+            Jugador.gameObject.SetActive(false);
+            Interfaz.Mostrar_Victoria();
+        }
+
+        void JuegoIniciadoPrimeraVez(){
+            Jugador.gameObject.SetActive(false);
+            Interfaz.Mostrar_Tutorial();
         }
 
         #region VOTACIONES

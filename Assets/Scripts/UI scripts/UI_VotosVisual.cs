@@ -67,11 +67,23 @@ namespace SistemaVotacion {
 
         IEnumerator AbrirTimer(float _segundosDeTimer, float _esperaInvoke){
             yield return new WaitForSeconds(_esperaInvoke);
-            timerVotos.ToggleTimerUI(true);
-            timerVotos.StartTimer(_segundosDeTimer);
+            if(VotingLogic.singleton.Estado == EstadoVotacion.ESPERA)
+            {
+                timerVotos.ToggleTimerUI(true);
+                timerVotos.StartTimer(_segundosDeTimer);
+            }
+
         }
 
-        void ApagarActas(float _tiempoEntreElecciones)
+        public void ApagarActas()
+        {
+            barras_GO.SetActive(false);
+            personas_GO.SetActive(false);
+            EsconderTextoResultado();
+            animator.Play("Oculto");
+        }
+
+        public void ApagarActas(float _tiempoEntreElecciones)
         {
             barras_GO.SetActive(false);
             personas_GO.SetActive(false);

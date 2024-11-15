@@ -76,6 +76,7 @@ namespace Demokratos{
             Jugador.Spawn(LevelManager.spawnPos) ;
             Jugador.ResetearEnergia();
             Jugador.SetearTipoEnergia(Jugador.tipoEnergia);
+            VotingLogic.singleton.SetVotacionActiva(true, true);
             bateriasEnNivel_Max = Nivel_Handler.GetCantidadBaterias();
             ChequearPasoNivel();
             Interfaz.Mostrar_Gameplay();
@@ -87,6 +88,7 @@ namespace Demokratos{
             Jugador.gameObject.SetActive(false);
             Interfaz.Mostrar_Tutorial();
             estadoJuego = GameState.TUTORIAL;
+            VotingLogic.singleton.SetVotacionActiva(false, true);
         }
 
         public void EmpezarNuevoNivel()
@@ -97,8 +99,8 @@ namespace Demokratos{
             Jugador.SetSpawn(LevelManager.spawnPos);
             Jugador.Spawn(LevelManager.spawnPos) ;
             Jugador.ResetearEnergia();
-            bateriasEnNivel_Max = Nivel_Handler.GetCantidadBaterias();
             VotingLogic.singleton.SetVotacionActiva(true, true);
+            bateriasEnNivel_Max = Nivel_Handler.GetCantidadBaterias();
             if (Ev_PasoNivel != null)
                 Ev_PasoNivel(LevelManager.currentLevel);
         }
@@ -128,11 +130,13 @@ namespace Demokratos{
                 OnVictory.Invoke();
             //SceneManager.LoadScene("Escena Victoria");
             Jugador.gameObject.SetActive(false);
+            VotingLogic.singleton.SetVotacionActiva(false, false);
             Interfaz.Mostrar_Victoria();
             estadoJuego = GameState.VICTORIA;
         }
 
         void JuegoIniciadoPrimeraVez(){
+            VotingLogic.singleton.SetVotacionActiva(false, true);
             Jugador.gameObject.SetActive(false);
             Interfaz.Mostrar_Tutorial();
             estadoJuego = GameState.TUTORIAL;

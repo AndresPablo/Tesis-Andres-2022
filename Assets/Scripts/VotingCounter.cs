@@ -76,6 +76,7 @@ public class VotingCounter : MonoBehaviour
         int _votosMax = 0;
         Acta _ganadora = ActasEnEleccion[0];
         index_ultima_ganadora = 0; // Inicializa el índice de la ganadora como el primero por defecto.
+            bool _empate = false;
 
         for (int i = 0; i < ActasEnEleccion.Count; i++)
         {
@@ -89,11 +90,18 @@ public class VotingCounter : MonoBehaviour
             }
             else if (a.votos == _votosMax)
             {
-                // Si hay empate, selecciona aleatoriamente entre las dos
-                _ganadora = Random.Range(0, 2) == 0 ? _ganadora : a;
-                index_ultima_ganadora = Random.Range(0, 2) == 0 ? index_ultima_ganadora : i; // Actualiza el índice con el empate
+              _empate = true;
             }
         }
+
+        // Si hay empate, selecciona aleatoriamente entre las dos
+        if(_empate == true)
+        {
+            index_ultima_ganadora = Random.Range(0, 2) ;
+            _ganadora = ActasEnEleccion[index_ultima_ganadora];
+            Debug.Log("Empate, gana: (" + index_ultima_ganadora + ") " + _ganadora.name);
+        }
+
 
         // Devuelve la acta ganadora
         return _ganadora;

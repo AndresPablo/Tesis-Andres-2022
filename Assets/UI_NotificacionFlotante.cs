@@ -21,7 +21,7 @@ namespace Demokratos {
 
         void Start()
         {
-        
+            Esconder();
         }
 
         public void CrearEnJugador(string _texto, float _tiempo = 2f)

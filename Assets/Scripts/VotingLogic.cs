@@ -127,8 +127,10 @@ public class VotingLogic : MonoBehaviour
             case EstadoVotacion.VOTANDO:
                 tiempoTranscurrido = 0;
             break;
-            case EstadoVotacion.APAGADO:
-            break;
+                case EstadoVotacion.APAGADO:
+                    visual.EsconderBarras();
+                    visual.ApagarActas();
+                    break;
             case EstadoVotacion.ESPERA:
                 tiempoTranscurrido = 0;
             break;
@@ -165,7 +167,7 @@ public class VotingLogic : MonoBehaviour
             tiempoTranscurrido = 0;
         if(Estado == EstadoVotacion.APAGADO)
             SetearEstado(EstadoVotacion.ESPERA);
-            else
+        else
             SetearEstado(EstadoVotacion.APAGADO);
     }
 
@@ -185,6 +187,7 @@ public class VotingLogic : MonoBehaviour
             {
                 SetearEstado(EstadoVotacion.APAGADO);
             }
+            Debug.Log("Votacion seteda a: " + Estado);
         }
 }
 }

@@ -27,7 +27,7 @@ public class UI_ScreenVictoria : MonoBehaviour
         {
             vecestocado++;
 
-            if (vecestocado >= 3)
+            if (vecestocado >= 2)
             {
                 EsconderPantalla();
                 Game_Manager_Nuevo.singleton.Reiniciar();

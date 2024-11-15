@@ -134,7 +134,7 @@ namespace Demokratos{
             public void ApagarTurbo()
             {
                 if (turboMode)
-                    UI_NotificacionFlotante.singleton.CrearEnJugador("TURBO apagado...");
+                    UI_NotificacionFlotante.singleton.CrearEnJugador("TURBO OFF");
             
                 turboMode = false;
                 controladorMov.SetStats(defaultControllerStats);
@@ -151,7 +151,7 @@ namespace Demokratos{
                 visual.SetColorRastro(tipoEnergia);
                 visual.SetEmisionRastro(true);
                 AudioManager.instance.PlayOneShot(misSonidos.turboActivar_SFX);
-                UI_NotificacionFlotante.singleton.CrearEnJugador("Modo TURBO!");
+                UI_NotificacionFlotante.singleton.CrearEnJugador("TURBO ON!");
                 if(Ev_TurboOn != null)
                 Ev_TurboOn.Invoke();
             }
@@ -178,7 +178,7 @@ namespace Demokratos{
             {
                 if(tipoEnergia == _tipo)
                 {
-            UI_NotificacionFlotante.singleton.CrearEnJugador("Recargando");
+                    UI_NotificacionFlotante.singleton.CrearEnJugador("Recargando...");
                     AumentarEnergia(_valor);
                 }
             }
@@ -236,6 +236,10 @@ namespace Demokratos{
         #region VIDA / MUERTE
             public void Matar()
             {
+                // Modo turbo te hace invencible
+                if (turboMode == true) {
+                    return;
+                }
                 if(estado != EstadoJugador.MUERTO)
                 {
                     AudioManager.instance.PlayOneShot(misSonidos.muerte_SFX);

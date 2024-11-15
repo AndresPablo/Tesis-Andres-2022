@@ -29,14 +29,14 @@ namespace Demokratos {
             fondo.gameObject.SetActive(true);
             label.text = _texto;
             Vector3 pos = Game_Manager_Nuevo.singleton.JugadorPos;
-            pos.y += 1f;
+            pos.y += 1.5f;
             pos.z = 0f;
             transform.position = pos;
             CancelInvoke();
             Invoke("Esconder", _tiempo);
         }
 
-        void Esconder()
+        public void Esconder()
         {
             fondo.gameObject.SetActive(false);
             label.text = "";

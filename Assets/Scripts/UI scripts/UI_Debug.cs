@@ -1,7 +1,9 @@
 using UnityEngine.UI;
 using UnityEngine;
+using SistemaVotacion;
+using Demokratos;
 
-namespace SistemaVotacion{
+namespace Demokratos.UI {
     public class UI_Debug : MonoBehaviour
     {
         [SerializeField] RectTransform panel;

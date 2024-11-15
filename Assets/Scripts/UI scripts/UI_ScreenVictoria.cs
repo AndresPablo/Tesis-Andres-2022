@@ -3,11 +3,13 @@ using UnityEngine.UI;
 using TMPro;
 using Demokratos;
 
+namespace Demokratos.UI{
 public class UI_ScreenVictoria : MonoBehaviour
 {
     [SerializeField] GameObject panelGO;
     [SerializeField] TextMeshProUGUI muertesLabel;
     [SerializeField] TextMeshProUGUI tiempoLabel;
+    int vecestocado; 
 
     private void Start()
     {
@@ -21,10 +23,15 @@ public class UI_ScreenVictoria : MonoBehaviour
             return;
         
         // si esta abierta la pantalla, reiniciamos el juego al tocar un boton
-        if(Input.GetButtonDown("Turbo") || Input.anyKey || Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Turbo") || Input.GetButtonDown("Jump"))
         {
-            Game_Manager_Nuevo.singleton.Reiniciar();
-            EsconderPantalla();
+            vecestocado++;
+
+            if (vecestocado >= 3)
+            {
+                EsconderPantalla();
+                Game_Manager_Nuevo.singleton.Reiniciar();
+            }
         }
     }
 
@@ -42,5 +49,7 @@ public class UI_ScreenVictoria : MonoBehaviour
 
     public void EsconderPantalla(){
         panelGO.SetActive(false);
+            vecestocado = 0;
     }
+}
 }

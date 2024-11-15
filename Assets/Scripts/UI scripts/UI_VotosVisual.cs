@@ -1,10 +1,10 @@
+using Demokratos.UI;
 using Demokratos;
 using TMPro;
 using UnityEngine;
 using System.Collections;
 using System;
 using UnityEngine.UI;
-using Demokratos.UI;
 using SistemaVotacion;
 
 namespace SistemaVotacion {
@@ -17,7 +17,10 @@ namespace SistemaVotacion {
         [SerializeField] float tiempoMuestraResultado = 2f;
         [Space]
         [SerializeField] Animator animator;
-        
+
+        [Header("Personas con texto")]
+        [SerializeField] TextMeshProUGUI personas_label_izquierda;
+        [SerializeField] TextMeshProUGUI personas_label_derecha;
         [Header("Personas con iconos")]
         [SerializeField] GameObject personas_GO;
         [SerializeField] GameObject personas_GO_izquierda;
@@ -107,6 +110,11 @@ namespace SistemaVotacion {
 
             ActualizarPersonas(votos_A, personas_GO_izquierda);
             ActualizarPersonas(votos_B, personas_GO_derecha);
+
+            personas_label_izquierda.text = "<b>" + votos_A + "</b>" + " personas";
+            personas_label_derecha.text = "<b>" + votos_B + "</b>" + " personas";
+
+
         }
 
         // Método para actualizar los hijos visibles según la cantidad de personas

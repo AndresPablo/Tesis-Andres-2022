@@ -2,20 +2,28 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using Demokratos;
 
+
+namespace Demokratos.UI{
 public class UI_Tutorial : MonoBehaviour
 {
 public GameObject[] tutorialPanels; // Lista de paneles del tutorial.
     private int currentPanelIndex = 0; // Índice del panel actual.
+    [SerializeField] Canvas canvas;
 
     void Start() {
         ShowPanel(0); // Muestra el primer panel.
     }
 
     void Update() {
-        // Avanza al siguiente panel al presionar cualquier tecla o clic.
-        if (Input.anyKeyDown) {
-            ShowNextPanel();
+        if(Game_Manager_Nuevo.estadoJuego == GameState.TUTORIAL)
+        {
+            // Avanza al siguiente panel al presionar cualquier tecla o clic.
+            if (Input.anyKeyDown)
+            {
+                ShowNextPanel();
+            }
         }
+
     }
 
     private void ShowPanel(int index) {
@@ -41,4 +49,9 @@ public GameObject[] tutorialPanels; // Lista de paneles del tutorial.
         ShowPanel(0);
         Game_Manager_Nuevo.singleton.EmpezarPartida();
     }
+
+    public void Mostrar(bool _estado){
+        canvas.enabled = _estado;
+    }
+}
 }

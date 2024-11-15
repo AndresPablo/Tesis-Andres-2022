@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace Demokratos { 
 public class InactivityManager : MonoBehaviour {
-    public float inactivityThreshold = 600f; // Tiempo en segundos antes de cambiar de escena.
+    public float inactivityThreshold = 60f; // Tiempo en segundos antes de cambiar de escena.
 
     private float timeSinceLastActivity = 0f;
 

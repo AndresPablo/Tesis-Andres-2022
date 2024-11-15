@@ -8,6 +8,9 @@ using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
 
 namespace Demokratos{
+
+    public enum GameState { TUTORIAL, JUGANDO, VICTORIA }
+
     public class Game_Manager_Nuevo : MonoBehaviour
     {
         #region SINGLETON
@@ -29,7 +32,7 @@ namespace Demokratos{
         [SerializeField] float tiempoRespawn = 3f;
         [SerializeField] float tiempoEntreNiveles = 2f;
 
-
+        public static GameState estadoJuego;
         public JugadorLogica Jugador { get { return jugador; }}
         public Vector2 JugadorPos { get { return jugador.transform.position; }}
         public int bateriasEnNivel;
@@ -58,7 +61,8 @@ namespace Demokratos{
 
         void Update(){
             // sumamos los segundos en el Update
-            tiempo += Time.deltaTime;
+            if(estadoJuego == GameState.JUGANDO)
+                tiempo += Time.deltaTime;
         }
 
 
@@ -75,16 +79,19 @@ namespace Demokratos{
             bateriasEnNivel_Max = Nivel_Handler.GetCantidadBaterias();
             ChequearPasoNivel();
             Interfaz.Mostrar_Gameplay();
+            estadoJuego = GameState.JUGANDO;
         }
 
         public void Reiniciar(){
             // mostramos el tutorial y despues desde ahi se llama a EmpezarPartida()
             Jugador.gameObject.SetActive(false);
             Interfaz.Mostrar_Tutorial();
+            estadoJuego = GameState.TUTORIAL;
         }
 
         public void EmpezarNuevoNivel()
         {
+            UI_NotificacionFlotante.singleton.Esconder();
             VotingLogic.singleton.ReinicarVotacion();
             Nivel_Handler.LoadNextLevel();
             Jugador.SetSpawn(LevelManager.spawnPos);
@@ -98,6 +105,7 @@ namespace Demokratos{
 
         public void NivelCompletado()
         {
+            UI_NotificacionFlotante.singleton.Esconder();
             Invoke("EmpezarNuevoNivel", tiempoEntreNiveles);
         }
 
@@ -121,17 +129,19 @@ namespace Demokratos{
             //SceneManager.LoadScene("Escena Victoria");
             Jugador.gameObject.SetActive(false);
             Interfaz.Mostrar_Victoria();
+            estadoJuego = GameState.VICTORIA;
         }
 
         void JuegoIniciadoPrimeraVez(){
             Jugador.gameObject.SetActive(false);
             Interfaz.Mostrar_Tutorial();
+            estadoJuego = GameState.TUTORIAL;
         }
 
         #region VOTACIONES
         void AplicarResultadoVotacion(SistemaVotacion.Acta acta, int index_ganadora)
         {
-            Jugador.SetearTipoEnergia(TipoEnergia.NINGUNO);
+            UI_NotificacionFlotante.singleton.CrearEnJugador("Eligieron: " + acta.name);
             switch(acta.efecto)
             {
                 case TipoEfecto.EOLICO:
